@@ -1,0 +1,6 @@
+.claude
+.claude/skills
+aws_sources
+aws_sources/DynamoDB/Core_Ddb_Calendriers/*
+aws_sources/DynamoDB/Core_Ddb_Calendriers/Core_Ddb_Calendriers.json
+aws_sources/DynamoDB/Core_Ddb_CiblageParametrageParcours/Core_Ddb_CiblageParametrageParcours.json

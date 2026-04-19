@@ -14,4 +14,653 @@
 {"Item":{"id_Calendar":{"S":"Cal_Distrib_PJ_ESA_RECLAMATION"},"JourExceptionnel":{"M":{"01/05/2026":{"M":{"Label":{"S":"Fête du Travail"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"01/11/2026":{"M":{"Label":{"S":"La Toussaint"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"14/07/2026":{"M":{"Label":{"S":"Fête Nationale"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"06/04/2026":{"M":{"Label":{"S":"Lundi de Pâques"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"25/05/2026":{"M":{"Label":{"S":"Lundi de Pentecôte"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"14/05/2026":{"M":{"Label":{"S":"Victoire des Alliés de 1945"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"15/08/2026":{"M":{"Label":{"S":"Assomption"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"11/11/2026":{"M":{"Label":{"S":"Armistice de 1918"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"08/05/2026":{"M":{"Label":{"S":"Victoire des Alliés de 1945"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"01/01/2026":{"M":{"Label":{"S":"Jour de l'an"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"25/12/2026":{"M":{"Label":{"S":"Noël"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}}}},"TimeZone":{"S":"Europe/Paris"},"Nom":{"S":"CAL_DISTR_ESA_RECLAMATION"},"Jour":{"M":{"Mercredi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}}}},"Dimanche":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureHebdomadaire"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}}}},"Samedi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA_RECLAMATION_STANDARD"},"Type":{"S":"Parcours"}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA_RECLAMATION_STANDARD"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}}}},"Mardi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA_RECLAMATION_STANDARD"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}}}},"Vendredi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA_RECLAMATION_STANDARD"},"Type":{"S":"Parcours"}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA_RECLAMATION_STANDARD"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}}}},"Jeudi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_TEST"},"Type":{"S":"Parcours"}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}}}},"Lundi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA_RECLAMATION_STANDARD"},"Type":{"S":"Parcours"}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA_RECLAMATION_STANDARD"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"},"Type":{"S":"Action"}}}}}}}}}
 {"Item":{"id_Calendar":{"S":"Cal_Cible_CoveaPJ"},"JourExceptionnel":{"M":{"01/05/2026":{"M":{"Label":{"S":"Fête du Travail"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"01/11/2026":{"M":{"Label":{"S":"La Toussaint"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"14/07/2026":{"M":{"Label":{"S":"Fête Nationale"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"06/04/2026":{"M":{"Label":{"S":"Lundi de Pâques"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"25/05/2026":{"M":{"Label":{"S":"Lundi de Pentecôte"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"14/05/2026":{"M":{"Label":{"S":"Victoire des Alliés de 1945"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"15/08/2026":{"M":{"Label":{"S":"Assomption"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"11/11/2026":{"M":{"Label":{"S":"Armistice de 1918"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"08/05/2026":{"M":{"Label":{"S":"Victoire des Alliés de 1945"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"01/01/2026":{"M":{"Label":{"S":"Jour de l'an"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"25/12/2026":{"M":{"Label":{"S":"Noël"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}}}},"TimeZone":{"S":"Europe/Paris"},"Nom":{"S":"Calendrier Cible CoveaPJ"},"Jour":{"M":{"Mercredi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}}}},"Dimanche":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureHebdomadaire"},"Action":{"NULL":true}}}}},"Samedi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}}}},"Mardi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}}}},"Vendredi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}}}},"Jeudi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}}}},"Lundi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"NULL":true}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"NULL":true}}}}}}}}}
 {"Item":{"id_Calendar":{"S":"Cal_Distrib_MAAF_01"},"JourExceptionnel":{"M":{"01/05/2026":{"M":{"Label":{"S":"Fête du Travail"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"01/11/2026":{"M":{"Label":{"S":"La Toussaint"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"14/07/2026":{"M":{"Label":{"S":"Fête Nationale"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"06/04/2026":{"M":{"Label":{"S":"Lundi de Pâques"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"25/05/2026":{"M":{"Label":{"S":"Lundi de Pentecôte"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"14/05/2026":{"M":{"Label":{"S":"Victoire des Alliés de 1945"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"15/08/2026":{"M":{"Label":{"S":"Assomption"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"11/11/2026":{"M":{"Label":{"S":"Armistice de 1918"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"08/05/2026":{"M":{"Label":{"S":"Victoire des Alliés de 1945"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"01/01/2026":{"M":{"Label":{"S":"Jour de l'an"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"25/12/2026":{"M":{"Label":{"S":"Noël"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}}}},"TimeZone":{"S":"Europe/Paris"},"Nom":{"S":"Calendrier Distribution MAAF"},"Jour":{"M":{"Mercredi":{"M":{"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"13:00-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}}}},"Dimanche":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureHebdomadaire"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}}}},"Samedi":{"M":{"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"13:00-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}}}},"Mardi":{"M":{"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"13:00-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}}}},"Vendredi":{"M":{"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"13:00-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}}}},"Jeudi":{"M":{"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"13:00-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}}}},"Lundi":{"M":{"00:00-08:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}},"11:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"08:00-11:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"13:00-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"PARCOURS_ESA"},"Type":{"S":"Parcours"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"ACTION_DISSUASION-ESA-RECLA"}}}}}}}}}
-{"Item":{"id_Calendar":{"S":"Cal_Vocal_GMF_01"},"JourExceptionnel":{"M":{"01/05/2026":{"M":{"Label":{"S":"Fête du Travail"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"01/11/2026":{"M":{"Label":{"S":"La Toussaint"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"14/07/2026":{"M":{"Label":{"S":"Fête Nationale"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"06/04/2026":{"M":{"Label":{"S":"Lundi de Pâques"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"25/05/2026":{"M":{"Label":{"S":"Lundi de Pentecôte"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"14/05/2026":{"M":{"Label":{"S":"Victoire des Alliés de 1945"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"15/08/2026":{"M":{"Label":{"S":"Assomption"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"11/11/2026":{"M":{"Label":{"S":"Armistice de 1918"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"08/05/2026":{"M":{"Label":{"S":"Victoire des Alliés de 1945"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"01/01/2026":{"M":{"Label":{"S":"Jour de l'an"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}},"25/12/2026":{"M":{"Label":{"S":"Noël"},"Slots":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureJourFerie"},"Action":{"NULL":true}}}}}}}}},"TimeZone":{"S":"Europe/Paris"},"Nom":{"S":"Calendrier Vocal GMF"},"Jour":{"M":{"Mercredi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"09:00-12:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"00:00-09:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}},"12:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}}}},"Dimanche":{"M":{"00:00-23:59":{"M":{"Status":{"S":"FermetureHebdomadaire"},"Action":{"S":"Appelant"}}}}},"Samedi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"09:00-12:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"00:00-09:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}},"12:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}}}},"Mardi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"09:00-12:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"00:00-09:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}},"12:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}}}},"Vendredi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"09:00-12:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"00:00-09:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}},"12:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}}}},"Jeudi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"09:00-12:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"00:00-09:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}},"12:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}}}},"Lundi":{"M":{"13:00-17:50":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"09:00-12:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"00:00-09:00":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}},"12:00-13:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"17:50-18:00":{"M":{"Status":{"S":"Ouvert"},"Action":{"S":"Appelant"}}},"18:00-23:59":{"M":{"Status":{"S":"Ferme"},"Action":{"S":"Appelant"}}}}}}}}}
+{
+    "Item": {
+        "id_Calendar": {
+            "S": "Cal_Vocal_GMF_01"
+        },
+        "JourExceptionnel": {
+            "M": {
+                "01/05/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "Fête du Travail"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "01/11/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "La Toussaint"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "14/07/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "Fête Nationale"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "06/04/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "Lundi de Pâques"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "25/05/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "Lundi de Pentecôte"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "14/05/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "Victoire des Alliés de 1945"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "15/08/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "Assomption"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "11/11/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "Armistice de 1918"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "08/05/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "Victoire des Alliés de 1945"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "01/01/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "Jour de l'an"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "25/12/2026": {
+                    "M": {
+                        "Label": {
+                            "S": "Noël"
+                        },
+                        "Slots": {
+                            "M": {
+                                "00:00-23:59": {
+                                    "M": {
+                                        "Status": {
+                                            "S": "FermetureJourFerie"
+                                        },
+                                        "Action": {
+                                            "NULL": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "TimeZone": {
+            "S": "Europe/Paris"
+        },
+        "Nom": {
+            "S": "Calendrier Vocal GMF"
+        },
+        "Jour": {
+            "M": {
+                "Mercredi": {
+                    "M": {
+                        "13:00-17:50": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "09:00-12:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "00:00-09:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "12:00-13:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "17:50-18:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "18:00-23:59": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        }
+                    }
+                },
+                "Dimanche": {
+                    "M": {
+                        "00:00-23:59": {
+                            "M": {
+                                "Status": {
+                                    "S": "FermetureHebdomadaire"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        }
+                    }
+                },
+                "Samedi": {
+                    "M": {
+                        "13:00-17:50": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "09:00-12:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "00:00-09:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "12:00-13:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "17:50-18:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "18:00-23:59": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        }
+                    }
+                },
+                "Mardi": {
+                    "M": {
+                        "13:00-17:50": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "09:00-12:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "00:00-09:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "12:00-13:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "17:50-18:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "18:00-23:59": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        }
+                    }
+                },
+                "Vendredi": {
+                    "M": {
+                        "13:00-17:50": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "09:00-12:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "00:00-09:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "12:00-13:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "17:50-18:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "18:00-23:59": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        }
+                    }
+                },
+                "Jeudi": {
+                    "M": {
+                        "13:00-17:50": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "09:00-12:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "00:00-09:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "12:00-13:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "17:50-18:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "18:00-23:59": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        }
+                    }
+                },
+                "Lundi": {
+                    "M": {
+                        "13:00-17:50": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "09:00-12:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "00:00-09:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "12:00-13:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "17:50-18:00": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ouvert"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        },
+                        "18:00-23:59": {
+                            "M": {
+                                "Status": {
+                                    "S": "Ferme"
+                                },
+                                "Action": {
+                                    "S": "Appelant"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
