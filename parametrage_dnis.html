@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IHM - Paramétrage des Numéros d'appel</title>
+
+    <!-- Salesforce Lightning Design System (SLDS) CSS -->
+    <link rel="stylesheet" href="css/salesforce-lightning-design-system.min.css">
+
+    <!-- Custom CSS for Local Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <!-- Auth Guard - Must be first script -->
+    <script src="js/auth-guard.js"></script>
+</head>
+
+<body class="slds-scope">
+    <div id="layout-header"></div>
+
+    <div class="app-container">
+        <!-- Sidebar Placeholder -->
+        <div id="layout-sidebar"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="slds-p-around_medium">
+                <!-- Page Header -->
+                <div class="slds-page-header slds-m-bottom_medium">
+                    <div class="slds-page-header__row">
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container">
+                                        📞
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1 class="page-title">
+                                                PARAMÉTRAGE DES NUMÉROS D'APPEL
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <p class="slds-page-header__name-meta page-subtitle">Gérer
+                                        les paramètres des numéros d'appels</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-page-header__col-actions">
+                            <button id="help-icon-btn" class="help-btn" title="Aide">❓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <!-- Selection Card -->
+                    <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span class="slds-text-heading_small">Gérer les N° d'appels</span>
+                                        </h2>
+                                    </div>
+                                </header>
+                                <div class="slds-no-flex">
+                                    <button id="new-dnis-btn" class="slds-button slds-button_brand"
+                                        title="Créer un nouveau DNIS">
+                                        <span class="slds-m-right_xx-small">➕</span> Nouveau N° d'appel
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-form-element">
+                                    <div class="slds-m-bottom_x-small">
+                                        <label
+                                            class="slds-form-element__label slds-m-bottom_none slds-m-right_none form-label"
+                                            for="dnis-select">Choisissez un N° d'appel dans la liste
+                                            pour l'éditer</label>
+                                    </div>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                            <div class="slds-col slds-grow">
+                                                <div class="slds-select_container">
+                                                    <select class="slds-select font-hp" id="dnis-select">
+                                                        <option value="">Chargement...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div id="edit-dnis-container"
+                                                class="slds-col slds-grow-none slds-m-left_small slds-hide">
+                                                <button id="edit-dnis-btn" class="slds-button slds-button_neutral"
+                                                    title="Editer le DNIS sélectionné">
+                                                    <span class="slds-m-right_xx-small">✏️</span> Éditer
+                                                </button>
+                                                <button id="duplicate-dnis-btn"
+                                                    class="slds-button slds-button_neutral slds-m-left_x-small"
+                                                    title="Dupliquer ce DNIS pour en créer un nouveau">
+                                                    <span class="slds-m-right_xx-small">📄</span> Dupliquer
+                                                </button>
+                                                <button id="delete-dnis-btn"
+                                                    class="slds-button slds-button_destructive slds-m-left_x-small"
+                                                    title="Supprimer le DNIS sélectionné">
+                                                    <span class="slds-m-right_xx-small">🗑️</span> Supprimer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- DNIS Details Card (visible after selection) -->
+                    <div id="dnis-details-container" class="slds-col slds-size_1-of-1 slds-m-bottom_medium slds-hide">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span class="slds-text-heading_small">Détails du N° d'appel : <span
+                                                    id="detail-numero"></span></span>
+                                        </h2>
+                                    </div>
+                                    <div class="slds-no-flex">
+                                        <button id="toggle-admin-details-btn" class="slds-button slds-button_neutral">
+                                            ⚙️ Afficher les options Admin
+                                        </button>
+                                    </div>
+                                </header>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div id="dnis-details-content" class="slds-grid slds-wrap slds-gutters_small">
+                                    <!-- Details will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1550.0.min.js"></script>
+    <script src="js/aws-config.js"></script>
+    <script src="news/news.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dynamodb-service.js"></script>
+    <script src="js/connect-service.js"></script>
+    <script src="js/dnis-manager.js"></script>
+
+    <!-- Editor Modal -->
+    <section id="dnis-editor-modal" role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-modal_large">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button id="close-editor-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+                    <span id="editor-title">Nouveau N° d'appel</span>
+                </h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-m-bottom_medium slds-text-align_right">
+                    <button id="toggle-admin-editor-btn" class="slds-button slds-button_neutral">
+                        ⚙️ Afficher les options Admin
+                    </button>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters_small">
+                    <!-- Numéro -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-numero">
+                                <abbr class="slds-required" title="required">*</abbr> Numéro
+                            </label>
+                            <div class="slds-form-element__control">
+                                <input type="tel" id="editor-numero" class="slds-input" placeholder="+33123456789"
+                                    required>
+                                <input type="text" id="editor-numero-readonly" class="slds-input slds-hide" readonly>
+                            </div>
+                            <div class="slds-form-element__help">Format: +33...</div>
+                        </div>
+                    </div>
+
+                    <!-- Nom -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-nom">Nom</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="editor-nom" class="slds-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Marque -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-marque">Marque</label>
+                            <div class="slds-form-element__control">
+                                <div id="marque-select-container" class="slds-select_container">
+                                    <select id="editor-marque" class="slds-select">
+                                        <option value="">Chargement...</option>
+                                    </select>
+                                </div>
+                                <input type="text" id="editor-marque-readonly" class="slds-input slds-hide" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ani_Simulation -->
+                    <div class="slds-col slds-size_1-of-2 admin-field slds-hide" data-admin-field="true">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-ani-simulation">Simulation du N°
+                                d'appel</label>
+                            <div class="slds-form-element__control">
+                                <input type="tel" id="editor-ani-simulation" class="slds-input" placeholder="+33...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date_Simulation -->
+                    <div class="slds-col slds-size_1-of-2 admin-field slds-hide" data-admin-field="true">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-date-simulation">Date Simulée</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="editor-date-simulation" class="slds-input"
+                                    placeholder="2025-12-25 15:00:00.000000+01:00">
+                            </div>
+                            <div class="slds-form-element__help">Format: YYYY-MM-DD HH:MM:SS.ffffff+TZ</div>
+                        </div>
+                    </div>
+
+                    <!-- Domaine -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-domaine">Domaine</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="editor-domaine" class="slds-select">
+                                        <option value="">Chargement...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- IntentionDeduite -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-intention-deduite">Intention
+                                Déduite</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="editor-intention-deduite" class="slds-input">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sous-domaine -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-sous-domaine">Sous-domaine</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="editor-sous-domaine" class="slds-select">
+                                        <option value="">Chargement...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Voix_Acteur -->
+                    <div class="slds-col slds-size_1-of-2 admin-field slds-hide" data-admin-field="true">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-voix-acteur">Voix Acteur</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="editor-voix-acteur" class="slds-select">
+                                        <option value="">-- Sélectionner --</option>
+                                        <option value="Mathieu">Mathieu</option>
+                                        <option value="Lea">Lea</option>
+                                        <option value="Celine">Celine</option>
+                                        <option value="Remi">Remi</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__help">Voix synthétisée Amazon Polly pour les messages vocaux
+                                de ce DNIS</div>
+                        </div>
+                    </div>
+
+                    <!-- Logger_Actif -->
+                    <div class="slds-col slds-size_1-of-2 admin-field slds-hide" data-admin-field="true">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-logger-actif">Logger Actif</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-checkbox">
+                                    <input type="checkbox" id="editor-logger-actif" />
+                                    <label class="slds-checkbox__label" for="editor-logger-actif">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Activer le logger</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__help">Active les logs détaillés CloudWatch pour le diagnostic
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modules -->
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Modules</label>
+                            <div class="slds-form-element__help slds-m-bottom_small">
+                                Les modules sont optionnels. Ajoutez les modules nécessaires pour votre flow Amazon
+                                Connect.
+                            </div>
+
+                            <!-- Add Module Section -->
+                            <div class="slds-grid slds-gutters_small slds-m-bottom_small">
+                                <div class="slds-col slds-size_3-of-4">
+                                    <div class="slds-select_container">
+                                        <select id="module-select" class="slds-select">
+                                            <option value="">Chargement des modules...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-4">
+                                    <button id="add-module-btn" class="slds-button slds-button_brand btn-full-width"
+                                        type="button">
+                                        ➕ Ajouter
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Modules List -->
+                            <div id="modules-container" class="slds-m-top_small">
+                                <!-- Modules will be added here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-editor-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="save-dnis-btn" class="slds-button slds-button_brand">Sauvegarder</button>
+            </footer>
+        </div>
+    </section>
+    <div id="editor-backdrop" class="slds-backdrop"></div>
+
+    <!-- Confirmation Modal -->
+    <section id="confirmation-modal" role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-modal_small">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header slds-theme_error slds-theme_alert-texture">
+                <button id="close-confirm-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate" id="confirm-modal-title">Confirmation</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="confirm-modal-content">
+                <p id="confirm-modal-message">Êtes-vous sûr ?</p>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-confirm-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="ok-confirm-btn" class="slds-button slds-button_destructive">Confirmer</button>
+            </footer>
+        </div>
+    </section>
+    <div id="confirmation-backdrop" class="slds-backdrop"></div>
+</body>
+
+</html>

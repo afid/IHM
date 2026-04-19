@@ -1,0 +1,14 @@
+{"Item":{"Structure":{"S":"Commerce"},"MoteurDecision":{"S":""},"Etat":{"S":""},"Type":{"S":"sous-domaine"},"Parent":{"S":""}}}
+{"Item":{"Structure":{"S":"exemple-domaine"},"MoteurDecision":{"S":"DomaineDecision"},"Etat":{"S":""},"Type":{"S":"domaine"},"Parent":{"S":"default"},"Situations":{"M":{"TEST":{"M":{"DateFin":{"S":"21/03/2026"},"DateDebut":{"S":"01/03/2026"},"Preponderance":{"N":"1"}}}}}}}
+{"Item":{"Structure":{"S":"COVEAPJ"},"MoteurDecision":{"S":""},"Etat":{"S":""},"Type":{"S":"marque"},"Parent":{"S":""}}}
+{"Item":{"Structure":{"S":"FIDELIAMMA"},"Etat":{"S":""},"Type":{"S":"domaine"},"Parent":{"S":"FIDELIA"},"MoteurDecision":{"S":"CoreDécision"}}}
+{"Item":{"Structure":{"S":"ESA"},"Etat":{"S":""},"MoteurDecision":{"S":"CoreDecision"},"Type":{"S":"sous-domaine"},"Parent":{"S":"RECLAMATION"}}}
+{"Item":{"Structure":{"S":"default"},"MoteurDecision":{"S":"TestDecision"},"Etat":{"S":""},"Type":{"S":"marque"}}}
+{"Item":{"Structure":{"S":"RECLAMATION"},"MoteurDecision":{"S":"CoreDecision"},"Etat":{"S":""},"Type":{"S":"domaine"},"Parent":{"S":"COVEAPJ"}}}
+{"Item":{"Structure":{"S":"FIDELIA"},"Type":{"S":"marque"},"Parent":{"S":""},"MoteurDecision":{"S":""},"Etat":{"S":""}}}
+{"Item":{"Structure":{"S":"CREA COURTIERS AGENTS"},"MoteurDecision":{"S":"CoreDecision"},"Etat":{"S":""},"Type":{"S":"sous-domaine"},"Parent":{"S":"ASSISTANCE"}}}
+{"Item":{"Structure":{"S":"exemple-sous-domaine"},"MoteurDecision":{"S":"CoreDécision"},"Etat":{"S":""},"Type":{"S":"sous-domaine"},"Parent":{"S":"exemple-domaine"},"Situations":{"M":{"COVEA PJ P_ROUGE":{"M":{"DateFin":{"S":"18/03/2026"},"DateDebut":{"S":"11/03/2026"},"Preponderance":{"S":"1"}}},"COVEA PJ ATTESTATION":{"M":{"DateFin":{"S":"28/02/2026"},"DateDebut":{"S":"20/02/2026"},"Preponderance":{"S":"1"}}}}}}}
+{"Item":{"Structure":{"S":"MMA"},"MoteurDecision":{"S":""},"Etat":{"S":""},"Type":{"S":"marque"},"Parent":{"S":""}}}
+{"Item":{"Structure":{"S":"ASA"},"MoteurDecision":{"S":""},"Etat":{"S":""},"Type":{"S":"domaine"},"Parent":{"S":"default"},"Situations":{"M":{"COVEA PJ P_ROUGE":{"M":{"DateFin":{"S":"18/03/2026"},"DateDebut":{"S":"11/03/2026"},"Preponderance":{"S":"1"}}},"COVEA PJ EVT_CLIM_GRELE":{"M":{"DateFin":{"S":"15/01/2026"},"DateDebut":{"S":"01/01/2026"},"Preponderance":{"S":"2"}}}}}}}
+{"Item":{"Structure":{"S":"ASSISTANCE"},"Type":{"S":"domaine"},"Parent":{"S":"COVEAPJ"},"MoteurDecision":{"S":"CoreDecision"},"Etat":{"S":""}}}
+{"Item":{"Structure":{"S":"MAAF"},"Etat":{"S":""},"MoteurDecision":{"S":""},"Type":{"S":"marque"},"Parent":{"S":""}}}

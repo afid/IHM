@@ -1,0 +1,138 @@
+/*
+   VARIABLES DE COULEUR
+   Ce sont des raccourcis pour les couleurs utilisées partout sur la page de connexion.
+   Si on veut changer le bleu partout, on le change juste ici.
+*/
+:root {
+    --sf-blue: #0070d2;       /* Bleu Salesforce */
+    --sf-blue-dark: #005fb2;  /* Bleu plus foncé quand on survole */
+    --sf-bg-gray: #f4f6f9;    /* Gris très clair du fond de page */
+    --sf-text-gray: #54698d;  /* Couleur du texte secondaire */
+    --sf-border: #d8dde6;     /* Couleur des bordures grises */
+}
+
+/* STYLE GÉNÉRAL DE LA PAGE */
+body {
+    background-color: var(--sf-bg-gray);
+    height: 100vh; /* Prend toute la hauteur de l'écran */
+    display: flex; /* Active le mode flexible pour le centrage */
+    flex-direction: column;
+    align-items: center;    /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.login-logo img {
+    max-height: 80px;
+    width: auto;
+}
+
+/* LA CARTE DE CONNEXION (Le carré blanc au milieu) */
+.login-card {
+    background: #ffffff;
+    border: 1px solid var(--sf-border);
+    border-radius: 4px; /* Coins arrondis */
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Légère ombre */
+}
+
+.login-card-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-card-logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+.slds-form-element__label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--sf-text-gray);
+    margin-bottom: 0.25rem;
+}
+
+.slds-input, .slds-select {
+    border-radius: 4px;
+    height: 40px;
+    border: 1px solid #969492;
+    padding: 0 12px;
+    font-size: 0.875rem;
+    transition: border-color 0.1s linear, background-color 0.1s linear;
+}
+
+.slds-input:focus, .slds-select:focus {
+    border-color: var(--sf-blue);
+    box-shadow: 0 0 3px var(--sf-blue);
+    outline: 0;
+}
+
+/* LE GROS BOUTON BLEU "SE CONNECTER" */
+.btn-login {
+    width: 100%;
+    background-color: var(--sf-blue);
+    color: white !important;
+    border: 1px solid var(--sf-blue);
+    border-radius: 4px;
+    height: 40px;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 1.5rem;
+    cursor: pointer; /* Curseur main */
+    transition: background-color 0.1s linear; /* Transition douce pour le changement de couleur */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-login:hover {
+    background-color: var(--sf-blue-dark);
+    border-color: var(--sf-blue-dark);
+}
+
+.btn-login:active {
+    background-color: #004a94;
+}
+
+.btn-login:disabled {
+    background-color: #969492;
+    border-color: #969492;
+    cursor: not-allowed;
+}
+
+#notification-box {
+    margin-top: 1rem;
+    border-radius: 4px;
+    display: none;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.notif-error { background: #fdf3f2; color: #c23934; border: 1px solid #c23934; }
+.notif-success { background: #edfbef; color: #027e46; border: 1px solid #027e46; }
+
+.form-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--sf-text-gray);
+}
+
+/* Spacing utilities to match Salesforce clean look */
+.slds-m-bottom_medium {
+    margin-bottom: 1rem;
+}

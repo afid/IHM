@@ -1,0 +1,5 @@
+{"Item":{"Segment":{"S":"TEST"},"ModulesPostCiblage":{"L":[]},"Etat":{"S":""},"ModulesPreCiblage":{"L":[]},"Groupement":{"S":"GROUPEMENT_STANDARD"},"Type":{"S":"Segment"},"Calendriers":{"M":{"COVEA PJ ATTESTATION":{"S":"Cal_01"}}}}}
+{"Item":{"Segment":{"S":"SEG_ESA_RECLAMATION"},"Groupement":{"S":"GROUPEMENT_STANDARD"},"Type":{"S":"Segment"},"Calendriers":{"M":{"NORMALE":{"S":"Cal_Distrib_PJ_ESA_RECLAMATION"}}}}}
+{"Item":{"Segment":{"S":"SINISTRE_EXPERT"},"ModulesPostCiblage":{"L":[]},"Groupement":{"S":"GROUPEMENT_STANDARD"},"Etat":{"S":""},"ModulesPreCiblage":{"L":[]},"Type":{"S":"Segment"},"Calendriers":{"M":{"NORMALE":{"S":"Cal_Distrib_PJ_01"},"COVEA PJ ATTESTATION":{"S":"Cal_Distrib_PJ_01"}}}}}
+{"Item":{"Segment":{"S":"SVI_MMA_TECH"},"ModulesPostCiblage":{"L":[]},"Groupement":{"S":"GROUPEMENT_STANDARD"},"Etat":{"S":""},"ModulesPreCiblage":{"L":[]},"Type":{"S":"Segment"},"Calendriers":{"M":{"NORMALE":{"S":"Cal_Distrib_FIDELIA_01"}}}}}
+{"Item":{"Segment":{"S":"GROUPEMENT_STANDARD"},"Groupement":{"S":""},"Type":{"S":"GroupementSegments"},"Calendriers":{"M":{"COVEA PJ ALERTE":{"S":"Cal_Distrib_PJ_CREA_ASSISTANCE"}}}}}

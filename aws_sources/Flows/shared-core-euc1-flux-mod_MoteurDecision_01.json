@@ -1,0 +1,132 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "AppelMoteurCoreDecision",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 40,
+      "y": 40
+    },
+    "ActionMetadata": {
+      "0a4474c9-5cdd-4389-971d-68bcdf5ab31d": {
+        "position": {
+          "x": 1161.6,
+          "y": 255.2
+        }
+      },
+      "AppelMoteurCoreDecision": {
+        "position": {
+          "x": 388,
+          "y": 155.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "Core_Lbd_MoteurCoreDecision"
+          }
+        },
+        "dynamicMetadata": {}
+      },
+      "60869d82-7224-4c25-8dec-c9461d1c8e83": {
+        "position": {
+          "x": 875.2,
+          "y": 198.4
+        },
+        "dynamicParams": []
+      }
+    },
+    "Annotations": [
+      {
+        "type": "default",
+        "id": "798c7a44-dcaa-4557-8e68-11b85d996afe",
+        "content": "Cette fonction appelle le moteur de décision CoreDecision. En entrée elle utilise des critères selon le paramétrage des fichiers JS de la lambda. En sortie elle renvoie la règle qui a matché, le segment de distribution, et l'erreur potentielle.",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": 461,
+          "y": 462
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      }
+    ],
+    "name": "shared-core-euc1-flux-mod_MoteurDecision_01",
+    "description": "",
+    "status": "published",
+    "settings": {
+      "resultData": {},
+      "transitions": {
+        "results": []
+      }
+    },
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {},
+      "Identifier": "0a4474c9-5cdd-4389-971d-68bcdf5ab31d",
+      "Type": "EndFlowModuleExecution",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:eu-central-1:167497311447:function:Core_Lbd_MoteurCoreDecision",
+        "InvocationTimeLimitSeconds": "3",
+        "InvocationType": "SYNCHRONOUS",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "AppelMoteurCoreDecision",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "60869d82-7224-4c25-8dec-c9461d1c8e83",
+        "Errors": [
+          {
+            "NextAction": "60869d82-7224-4c25-8dec-c9461d1c8e83",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "UC_Segment": "$.External.distributionSegment",
+          "UC_Erreur": "$.External.error",
+          "UC_Priorite": "$.External.priority",
+          "UC_Libelle": "$.External.libellé"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "60869d82-7224-4c25-8dec-c9461d1c8e83",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "0a4474c9-5cdd-4389-971d-68bcdf5ab31d",
+        "Errors": [
+          {
+            "NextAction": "0a4474c9-5cdd-4389-971d-68bcdf5ab31d",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ],
+  "Settings": {
+    "InputParameters": [],
+    "OutputParameters": [],
+    "Transitions": [
+      {
+        "DisplayName": "Success",
+        "ReferenceName": "Success",
+        "Description": ""
+      },
+      {
+        "DisplayName": "Error",
+        "ReferenceName": "Error",
+        "Description": ""
+      }
+    ]
+  }
+}

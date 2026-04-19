@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IHM - Paramétrages de l'IHM</title>
+
+    <!-- Salesforce Lightning Design System (SLDS) CSS -->
+    <link rel="stylesheet" href="css/salesforce-lightning-design-system.min.css">
+
+    <!-- Custom CSS for Local Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <!-- Auth Guard - Must be first script -->
+    <script src="js/auth-guard.js"></script>
+</head>
+
+<body class="slds-scope">
+    <div id="layout-header"></div>
+
+    <div class="app-container">
+        <!-- Sidebar Placeholder -->
+        <div id="layout-sidebar"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="slds-p-around_medium">
+                <!-- Page Header -->
+                <div class="slds-page-header slds-m-bottom_medium">
+                    <div class="slds-page-header__row">
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container">
+                                        ⚙️
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1 class="page-title">
+                                                PARAMÉTRAGES DE L'IHM
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <p class="slds-page-header__name-meta page-subtitle">Gérer les paramètres globaux et
+                                        les modules</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-page-header__col-actions">
+                            <button id="help-icon-btn" class="help-btn" title="Aide">❓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parameters Table Card -->
+                <article class="slds-card">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                    <span class="slds-text-heading_small">Paramètres Disponibles</span>
+                                </h2>
+                            </div>
+                        </header>
+                        <div class="slds-no-flex">
+                            <button id="new-param-btn" class="slds-button slds-button_brand"
+                                title="Créer un nouveau paramètre">
+                                <span class="slds-m-right_xx-small">➕</span> Nouveau Paramètre
+                            </button>
+                        </div>
+                    </div>
+                    <div class="slds-card__body">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th scope="col" class="th-col-60">ID</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col" class="th-col-150">Nb Params Input</th>
+                                    <th scope="col">Actions Disponibles</th>
+                                    <th scope="col" class="th-col-100">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="params-table-body">
+                                <tr>
+                                    <td colspan="6" class="slds-text-align_center slds-p-around_medium">
+                                        Chargement des paramètres...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1550.0.min.js"></script>
+    <script src="js/aws-config.js"></script>
+    <script src="news/news.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dynamodb-service.js"></script>
+    <script src="js/ihm-manager.js"></script>
+
+    <!-- Editor Modal -->
+    <section id="param-editor-modal" role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-modal_medium">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button id="close-modal-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 id="modal-heading" class="slds-modal__title slds-hyphenate">Nouveau Paramètre</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content">
+                <div class="slds-form slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-size_1-of-2 slds-m-bottom_medium">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="param-type">Type</label>
+                            <div class="slds-form-element__control">
+                                <select id="param-type" class="slds-select">
+                                    <option value="Module">Module</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-m-bottom_medium">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="param-name">Nom du module</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="param-name" class="slds-input"
+                                    placeholder="ex: Core_Mod_MonModule">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="param-nb-input">Nombre de paramètres attendus
+                                (0 : illimité)</label>
+                            <div class="slds-form-element__control">
+                                <input type="number" id="param-nb-input" class="slds-input" min="0" value="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Liste des paramètres (actions)</label>
+                            <div class="slds-form-element__control">
+                                <div id="actions-list-container" class="slds-m-bottom_small">
+                                    <!-- Dynamic list of actions -->
+                                </div>
+                                <button id="add-action-btn" class="slds-button slds-button_neutral">
+                                    ➕ Ajouter une action
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-modal-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="save-param-btn" class="slds-button slds-button_brand">Sauvegarder</button>
+            </footer>
+        </div>
+    </section>
+    <div id="modal-backdrop" class="slds-backdrop"></div>
+
+    <!-- Confirmation Modal -->
+    <section id="confirmation-modal" role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-modal_small">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header slds-theme_error slds-theme_alert-texture">
+                <button id="close-confirm-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title">Confirmation</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <p id="confirm-message">Êtes-vous sûr de vouloir supprimer ce paramètre ?</p>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-confirm-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="ok-confirm-btn" class="slds-button slds-button_destructive">Confirmer</button>
+            </footer>
+        </div>
+    </section>
+    <div id="confirmation-backdrop" class="slds-backdrop"></div>
+
+</body>
+
+</html>

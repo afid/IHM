@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Utilisateur - Gestion des Segments</title>
+    <link rel="stylesheet" href="../css/salesforce-lightning-design-system.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+</head>
+
+<body class="slds-scope">
+    <div class="slds-p-around_medium">
+        <h1 class="guide-h1">🎯 Guide Utilisateur : Gestion des Segments</h1>
+        <p class="subtitle">
+            Ce module permet de configurer les segments de distribution et les modules de ciblage associés.
+        </p>
+
+        <section class="guide-section">
+            <h2>1. Définition du segment</h2>
+            <p>
+                Un segment est défini par son nom, son type et son groupement.
+            </p>
+            <ul>
+                <li><strong>Nom :</strong> L'identifiant du segment.</li>
+                <li><strong>Groupement :</strong> Obligatoire pour hiérarchiser les segments et permettre l'héritage des
+                    propriétés.</li>
+                <li><strong>Type :</strong> Catégorie du segment pour le moteur de distribution.</li>
+            </ul>
+        </section>
+
+        <section class="guide-section">
+            <h2>2. Modules de Ciblage</h2>
+            <p>
+                Vous pouvez associer des modules spécifiques pour affiner le ciblage des appels.
+            </p>
+            <ul>
+                <li><strong>Modules Pre Ciblage :</strong> Exécutés avant le choix final du segment.</li>
+                <li><strong>Modules Post Ciblage :</strong> Exécutés après la sélection du segment, pour des actions de
+                    finition ou de routage spécifique.</li>
+            </ul>
+            <div class="info-box">
+                <strong>Gestion :</strong> Vous pouvez ajouter, modifier ou supprimer des modules dans chaque section.
+                L'ordre des modules peut être réorganisé si nécessaire.
+            </div>
+        </section>
+
+        <section class="guide-section">
+            <h2>3. Calendriers associés</h2>
+            <p>
+                Un segment peut être lié à un ou plusieurs calendriers pour définir ses périodes d'activité. Utilisez le
+                bouton "Ajouter un calendrier" pour lier un calendrier existant au segment.
+            </p>
+        </section>
+    </div>
+</body>
+
+</html>

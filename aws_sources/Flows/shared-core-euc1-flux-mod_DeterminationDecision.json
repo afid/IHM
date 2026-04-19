@@ -1,0 +1,171 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "LectureMoteurDecision",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": -256.8,
+      "y": 31.2
+    },
+    "ActionMetadata": {
+      "LectureMoteurDecision": {
+        "position": {
+          "x": -61.6,
+          "y": 115.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "Core_Lbd_ParametrageDecision"
+          }
+        },
+        "dynamicMetadata": {}
+      },
+      "912e419c-11ac-481f-b6cb-f843e29b6d49": {
+        "position": {
+          "x": 284.8,
+          "y": 66.4
+        },
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "efd86efe-6771-4690-9cc0-06503ac94eb8",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "CoreDecision"
+          }
+        ]
+      },
+      "15c1974f-3e6e-4936-a221-ac51bb337046": {
+        "position": {
+          "x": 655.2,
+          "y": 164.8
+        }
+      }
+    },
+    "Annotations": [
+      {
+        "type": "default",
+        "id": "9bbae535-c2a6-4b30-aea7-6a385c77ba98",
+        "content": "Cette fonction prend en entrée le contact attribute \"SousDomaine\" pour aller lire une table dans laquelle à chaque domaine est associé un moteur de décision.\nEn sortie elle renvoie le nom du moteur associé au domaine d'entrée",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": -105,
+          "y": 400
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      },
+      {
+        "type": "default",
+        "id": "7dedbe5c-4f3d-4678-96fb-596c3b76dc61",
+        "content": "Soit la fonction a renvoyé un moteur, dans ce cas il est attaché en contact attributes.\nSoit ce n'est pas le cas et donc on utilise le moteur Core par défaut",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": 780,
+          "y": 415
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      }
+    ],
+    "name": "shared-core-euc1-flux-mod_DeterminationDecision",
+    "description": "",
+    "status": "published",
+    "settings": {
+      "resultData": {},
+      "transitions": {
+        "results": [
+          {
+            "name": "CoreDecision",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:eu-central-1:167497311447:function:Core_Lbd_ParametrageDecision",
+        "InvocationTimeLimitSeconds": "8",
+        "InvocationType": "SYNCHRONOUS",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "LectureMoteurDecision",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "912e419c-11ac-481f-b6cb-f843e29b6d49",
+        "Errors": [
+          {
+            "NextAction": "15c1974f-3e6e-4936-a221-ac51bb337046",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.External.moteurDecision"
+      },
+      "Identifier": "912e419c-11ac-481f-b6cb-f843e29b6d49",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "15c1974f-3e6e-4936-a221-ac51bb337046",
+        "Conditions": [
+          {
+            "NextAction": "15c1974f-3e6e-4936-a221-ac51bb337046",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "CoreDecision"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "15c1974f-3e6e-4936-a221-ac51bb337046",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Result": "CoreDecision",
+        "ResultData": {}
+      },
+      "Identifier": "15c1974f-3e6e-4936-a221-ac51bb337046",
+      "Type": "EndFlowModuleExecution",
+      "Transitions": {}
+    }
+  ],
+  "Settings": {
+    "InputParameters": [],
+    "OutputParameters": [],
+    "Transitions": [
+      {
+        "DisplayName": "Success",
+        "ReferenceName": "Success",
+        "Description": ""
+      },
+      {
+        "DisplayName": "Error",
+        "ReferenceName": "Error",
+        "Description": ""
+      }
+    ]
+  }
+}

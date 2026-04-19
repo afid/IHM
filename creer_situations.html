@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IHM - Créer une Situation</title>
+
+    <!-- Salesforce Lightning Design System (SLDS) CSS -->
+    <link rel="stylesheet" href="css/salesforce-lightning-design-system.min.css">
+
+    <!-- Custom CSS for Local Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <!-- Auth Guard - Must be first script -->
+    <script src="js/auth-guard.js"></script>
+</head>
+
+<body class="slds-scope">
+    <div id="layout-header"></div>
+
+    <div class="app-container">
+        <!-- Sidebar Placeholder -->
+        <div id="layout-sidebar"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="slds-p-around_medium">
+                <!-- Page Header -->
+                <div class="slds-page-header slds-m-bottom_medium">
+                    <div class="slds-page-header__row">
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container">
+                                        🗓️
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1 class="page-title">
+                                                GESTION DES SITUATIONS
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <p class="slds-page-header__name-meta page-subtitle">Consulter, créer, modifier ou
+                                        supprimer des situations</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-page-header__col-actions">
+                            <button id="help-icon-btn" class="help-btn" title="Aide">❓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Situations List Card -->
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_1-of-1">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span class="slds-text-heading_small">Situations Enregistrées</span>
+                                        </h2>
+                                    </div>
+                                </header>
+                                <div class="slds-no-flex">
+                                    <button id="new-situation-btn" class="slds-button slds-button_brand">
+                                        <span class="slds-m-right_xx-small">➕</span> Nouvelle Situation
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slds-card__body">
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Nom">Nom de la situation</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Priorité">Pondération</div>
+                                            </th>
+                                            <th scope="col" class="slds-text-align_right">
+                                                <div class="slds-truncate" title="Actions">Actions</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="situations-table-body">
+                                        <!-- Populated by JS -->
+                                        <tr>
+                                            <td colspan="3" class="slds-text-align_center slds-p-around_medium">
+                                                Chargement...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Situation Editor Modal -->
+    <section id="situation-editor-modal" role="dialog" tabindex="-1" aria-modal="true"
+        class="slds-modal slds-modal_large">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button id="close-modal-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 id="modal-title" class="slds-modal__title slds-hyphenate">Nouvelle Situation</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <div class="slds-grid slds-wrap slds-gutters_small">
+                    <!-- Info Section -->
+                    <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+                        <div class="slds-grid slds-wrap slds-gutters_small">
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="situation-name">
+                                        <abbr class="slds-required" title="required">*</abbr> Nom de la Situation
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="situation-name" class="slds-input"
+                                            placeholder="Ex: SITUATION_EXCEPTIONNELLE" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="situation-priority">
+                                        <abbr class="slds-required" title="required">*</abbr> Pondération
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <input type="number" id="situation-priority" class="slds-input"
+                                            placeholder="Ex: 10" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-modal-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="save-situation-btn" class="slds-button slds-button_brand">Sauvegarder</button>
+            </footer>
+        </div>
+    </section>
+    <div id="modal-backdrop" class="slds-backdrop"></div>
+
+    <!-- Confirmation Modal -->
+    <section id="confirmation-modal" role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-modal_small">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header slds-theme_error slds-theme_alert-texture">
+                <button id="close-confirm-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title">Confirmation</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <p id="confirm-message">Êtes-vous sûr ?</p>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-confirm-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="ok-confirm-btn" class="slds-button slds-button_destructive">Confirmer</button>
+            </footer>
+        </div>
+    </section>
+    <div id="confirmation-backdrop" class="slds-backdrop"></div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1550.0.min.js"></script>
+    <script src="js/aws-config.js"></script>
+    <script src="news/news.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dynamodb-service.js"></script>
+    <script src="js/situations-manager.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IHM - Gestion des Guides</title>
+
+    <!-- Salesforce Lightning Design System (SLDS) CSS -->
+    <link rel="stylesheet" href="css/salesforce-lightning-design-system.min.css">
+
+    <!-- Custom CSS for Local Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <!-- Auth Guard - Must be first script -->
+    <script src="js/auth-guard.js"></script>
+</head>
+
+<body class="slds-scope">
+    <div id="layout-header"></div>
+
+    <div class="app-container">
+        <!-- Sidebar Placeholder -->
+        <div id="layout-sidebar"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="slds-p-around_medium">
+                <!-- Page Header -->
+                <div class="slds-page-header slds-m-bottom_medium">
+                    <div class="slds-page-header__row">
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container">📋</span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1 class="page-title">GESTION DES GUIDES</h1>
+                                        </div>
+                                    </div>
+                                    <p class="slds-page-header__name-meta page-subtitle">Gérer les groupements de guides
+                                        vocaux (Dissuasion, Attente, Mise en Relation)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-page-header__col-actions">
+                            <button id="help-icon-btn" class="help-btn" title="Aide">❓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Légende des types de guides -->
+                <div class="slds-box guides-legend slds-m-bottom_small slds-p-around_small">
+                    <span class="slds-text-title_caps slds-m-right_small">Types :</span>
+                    <span class="guide-badge guide-dis slds-m-right_small">DIS</span>
+                    <span class="slds-m-right_medium">Dissuasion - Message invitant à rappeler ultérieurement</span>
+                    <span class="guide-badge guide-att slds-m-right_small">ATT</span>
+                    <span class="slds-m-right_medium">Attente - Message diffusé en file d'attente</span>
+                    <span class="guide-badge guide-mer slds-m-right_small">MER</span>
+                    <span>Mise en Relation - Message avant transfert à l'agent</span>
+                </div>
+
+                <!-- Main Card -->
+                <article class="slds-card">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                    <span class="slds-text-heading_small">Groupements de Guides Vocaux</span>
+                                </h2>
+                            </div>
+                        </header>
+                        <div class="slds-no-flex">
+                            <button id="new-groupe-btn" class="slds-button slds-button_brand"
+                                title="Créer un nouveau groupement">
+                                <span class="slds-m-right_xx-small">➕</span> Nouveau Groupement
+                            </button>
+                        </div>
+                    </div>
+                    <div class="slds-card__body slds-scrollable_x">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped"
+                            role="grid">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th scope="col">
+                                        <div class="slds-truncate">Nom du Groupement</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate">Guide Dissuasion (_DIS_)</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate">Guide Attente (_ATT_)</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate">Guide Mise en Relation (_MER_)</div>
+                                    </th>
+                                    <th scope="col" class="slds-text-align_right">
+                                        <div class="slds-truncate">Actions</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="groupes-table-body">
+                                <tr>
+                                    <td colspan="5" class="slds-text-align_center slds-p-around_medium">Chargement...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1550.0.min.js"></script>
+    <script src="js/aws-config.js"></script>
+    <script src="news/news.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dynamodb-service.js"></script>
+    <script src="js/connect-service.js"></script>
+    <script src="js/guides-manager.js"></script>
+
+    <!-- Editor Modal -->
+    <section id="guides-editor-modal" role="dialog" tabindex="-1" aria-modal="true"
+        class="slds-modal slds-fade-in-open slds-hide">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button id="close-editor-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 id="modal-title" class="slds-modal__title slds-hyphenate">Nouveau Groupement</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <div class="slds-grid slds-wrap slds-gutters_small">
+
+                    <!-- Nom du groupement -->
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-groupe-name">
+                                <abbr class="slds-required" title="required">*</abbr> Nom du Groupement
+                            </label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="editor-groupe-name" class="slds-input"
+                                    placeholder="Ex: GROUPE_ESA" required>
+                            </div>
+                            <div class="slds-form-element__help">Identifiant unique du groupement</div>
+                        </div>
+                    </div>
+
+                    <!-- Guide Dissuasion -->
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-guide-dis">
+                                Guide Dissuasion <span class="slds-badge slds-badge_inverse">_DIS_</span>
+                            </label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="editor-guide-dis" class="slds-select">
+                                        <option value="">-- Aucun --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guide Attente -->
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-guide-att">
+                                Guide Attente <span class="slds-badge slds-badge_inverse">_ATT_</span>
+                            </label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="editor-guide-att" class="slds-select">
+                                        <option value="">-- Aucun --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guides Mise en Relation (multi) -->
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">
+                                Guides Mise en Relation <span class="slds-badge slds-badge_inverse">_MER_</span>
+                            </label>
+                            <div id="editor-guides-mer-container">
+                                <!-- Les lignes de guides MER seront ajoutées ici dynamiquement -->
+                            </div>
+                            <button id="add-guide-mer-btn" class="slds-button slds-button_neutral slds-m-top_xx-small"
+                                type="button" title="Ajouter un guide MER">
+                                <span class="slds-m-right_xx-small">➕</span> Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-editor-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="save-groupe-btn" class="slds-button slds-button_brand">Sauvegarder</button>
+            </footer>
+        </div>
+    </section>
+    <div id="editor-backdrop" class="slds-backdrop"></div>
+
+    <!-- Confirmation Modal -->
+    <section id="confirmation-modal" role="dialog" tabindex="-1" aria-modal="true"
+        class="slds-modal slds-modal_small slds-fade-in-open slds-hide">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header slds-theme_error slds-theme_alert-texture">
+                <button id="close-confirm-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate">Confirmation de suppression</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <p id="confirm-message">Êtes-vous sûr ?</p>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-confirm-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="ok-confirm-btn" class="slds-button slds-button_destructive">Supprimer</button>
+            </footer>
+        </div>
+    </section>
+    <div id="confirmation-backdrop" class="slds-backdrop"></div>
+
+
+</body>
+
+</html>

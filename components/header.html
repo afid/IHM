@@ -1,0 +1,28 @@
+<header class="slds-global-header_container">
+    <div class="slds-global-header slds-grid slds-grid_align-spread">
+        <div class="slds-global-header__item">
+            <div class="slds-grid slds-grid_vertical-align-center">
+                <!-- Bouton pour ouvrir le menu sur mobile (les 3 barres) -->
+                <button class="mobile-toggle" id="mobileSidebarToggle">☰</button>
+                <div class="slds-global-header__logo">
+                    <!-- Logos (grand pour ordinateur, petit pour mobile) -->
+                    <img src="img/logo.png" alt="IHM Afid Logo" class="logo-large header-logo">
+                    <img src="img/logosmall.png" alt="IHM Afid Logo Small" class="logo-small header-logo">
+                </div>
+            </div>
+        </div>
+        <!-- Zone pour le bandeau défilant d'infos -->
+        <div class="slds-global-header__item slds-grid slds-grid_vertical-align-center header-right-section">
+            <div class="news-ticker-container header-ticker-container">
+                <div class="news-ticker-label font-rajdhani">Dernière infos</div>
+                <div class="news-ticker" id="newsTicker">
+                    <span class="news-item">Chargement des nouvelles...</span>
+                </div>
+            </div>
+            <!-- Bouton de déconnexion -->
+            <button id="logoutBtn" class="slds-button slds-button_icon slds-button_icon-border-filled logout-btn" title="Se déconnecter">
+                <span class="logout-icon">🔓</span>
+            </button>
+        </div>
+    </div>
+</header>

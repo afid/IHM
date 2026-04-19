@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Complet - Gestion des Calendriers</title>
+    <link rel="stylesheet" href="../css/salesforce-lightning-design-system.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+
+    <!-- Pas de auth-guard/layout/script : cette page est affichée dans un iframe modal -->
+</head>
+
+<body class="slds-scope">
+    <main>
+        <div class="slds-p-around_medium">
+
+            <!-- HEADER -->
+            <h1 class="guide-h1" id="intro">📅 Guide Complet : Gestion des Calendriers</h1>
+            <p class="subtitle">
+                Cette documentation est votre guide de référence complet pour maîtriser la gestion des calendriers dans
+                l'application.
+                Elle couvre tous les aspects, des concepts de base aux cas complexes.
+            </p>
+
+            <!-- ⚠️ NOTE IMPORTANTE : FORMAT DES HORAIRES -->
+            <div class="config-note">
+                <strong>⚠️ Configuration requise : Langue du navigateur</strong>
+                <p>
+                    Pour afficher les horaires au <strong>format 24h (HH:MM)</strong> dans cette application :
+                    <br><span class="highlight">La langue de votre navigateur doit être réglée sur FRANÇAIS</span>
+                </p>
+                <ul>
+                    <li><strong>Si vous voyez AM/PM :</strong> Changez la langue du navigateur en FRANÇAIS</li>
+                    <li><strong>Chrome :</strong> Paramètres → Langues → Sélectionnez FRANÇAIS</li>
+                    <li><strong>Firefox :</strong> Paramètres → Général → Langue → FRANÇAIS</li>
+                    <li><strong>Safari :</strong> Préférences Système → Langue et région → FRANÇAIS</li>
+                    <li><strong>Edge :</strong> Paramètres → Langues → FRANÇAIS</li>
+                </ul>
+            </div>
+
+            <!-- ⚠️ NOTE IMPORTANTE : SERVEUR HTTP -->
+            <div class="config-note config-note-warning">
+                <strong>🚨 Important : Usage d'un serveur HTTP</strong>
+                <p>
+                    Cette application **ne peut pas** être ouverte directement comme un fichier local (double-clic).
+                    Elle doit être exécutée via un **serveur Web local** (ex: Python, Node.js) pour que toutes les
+                    fonctionnalités soient actives.
+                </p>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 1. INTRODUCTION -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="understand">1. Comprendre les calendriers</h2>
+
+            <h3 class="guide-h3">Qu'est-ce qu'un calendrier ?</h3>
+            <p>
+                Un calendrier est une configuration qui définit les horaires d'ouverture et fermeture d'un service sur
+                une période donnée.
+                Il détermine quand vos files d'attente sont accessibles, quand les appels sont traités, et quand le
+                service est fermé.
+            </p>
+
+            <h3 class="guide-h3">Types de calendriers disponibles</h3>
+            <table class="guide-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Objectif</th>
+                        <th>Cas d'usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Calendrier Vocal</strong></td>
+                        <td>Gère les heures d'accès au système vocal (IVR)</td>
+                        <td>Support client, services d'information téléphonique</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Calendrier Distribution</strong></td>
+                        <td>Définit les horaires de distribution des appels entre files</td>
+                        <td>Routage intelligent, load balancing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Calendrier Cible</strong></td>
+                        <td>Horaires spécifiques d'une destination ou queue</td>
+                        <td>Équipes distantes, zones géographiques différentes</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <strong>À retenir :</strong>
+                Les calendriers Vocal et Distribution travaillent ensemble. Le calendrier Vocal détermine si le service
+                global est
+                ouvert, tandis que le calendrier Distribution affine le routage des appels quand le service est actif.
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 2. SYSTÈME DE COULEURS -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="color-system">2. Système de couleurs et identification visuelle</h2>
+
+            <h3 class="guide-h3">Comprendre les couleurs du calendrier</h3>
+            <p>
+                Chaque couleur représente un état du service pour un jour donné. Ce code couleur permet une
+                identification
+                rapide et visuelle de la configuration d'une journée.
+            </p>
+
+            <div class="color-legend">
+                <div class="legend-item">
+                    <div class="legend-color color-light-purple"></div>
+                    <div class="legend-text">
+                        <strong>Ouvert</strong>
+                        <small>Service en service normal, file active</small>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-dark-purple"></div>
+                    <div class="legend-text">
+                        <strong>Ouvert (Sans attente)</strong>
+                        <small>Service accessible, mais pas de mise en attente possible</small>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-dark-red"></div>
+                    <div class="legend-text">
+                        <strong>Pré-fermeture</strong>
+                        <small>Service en phase de fermeture, derniers appels acceptés</small>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-dark-gray"></div>
+                    <div class="legend-text">
+                        <strong>Fermé</strong>
+                        <small>Service indisponible</small>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-orange"></div>
+                    <div class="legend-text">
+                        <strong>Fermeture Hebdomadaire</strong>
+                        <small>Définition en Semaine Type : jour sans service regular</small>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-brown"></div>
+                    <div class="legend-text">
+                        <strong>Jour Exceptionnel</strong>
+                        <small>Exception personnalisée pour une date spécifique</small>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-pink"></div>
+                    <div class="legend-text">
+                        <strong>Jour Férié</strong>
+                        <small>Jour officiel sans service</small>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="guide-h3">Identification des jours exceptionnels</h3>
+            <p>
+                Les jours marqués d'une <strong>bordure pleine</strong> (cadre épais) sur le calendrier annuel indiquent
+                qu'une exception personnalisée a été définie pour ce jour. Cette exception a une priorité maximale et
+                surpassera les horaires réguliers.
+            </p>
+
+            <div class="example-box">
+                <strong>Exemple visuel :</strong>
+                Un jour avec une bordure pleine et une couleur marron (🟫) indique une journée exceptionnelle définie
+                précisément pour ce jour.
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 3. HIÉRARCHIE DE PRIORITÉ -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="priority">3. Hiérarchie de priorité (Comment le système choisit)</h2>
+
+            <p>
+                Lorsque plusieurs règles s'appliquent à un même jour, le système suit une hiérarchie stricte de
+                priorités.
+                Comprendre cette hiérarchie est essentiel pour configurer correctement vos calendriers.
+            </p>
+
+            <div class="priority-box">
+                <div class="priority-level color-brown">
+                    <div class="priority-number">1️⃣</div>
+                    <div>
+                        <strong>Priorité MAXIMALE : Exception personnalisée</strong>
+                        <div class="small-text">
+                            Si une exception est définie pour une date spécifique, elle l'emporte toujours.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="priority-level color-orange">
+                    <div class="priority-number">2️⃣</div>
+                    <div>
+                        <strong>Priorité ÉLEVÉE : Fermeture hebdomadaire</strong>
+                        <div class="small-text">
+                            Les jours fermés définis dans la Semaine Type surpassent d'autres configurations.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="priority-level color-blue">
+                    <div class="priority-number">3️⃣</div>
+                    <div>
+                        <strong>Priorité PAR DÉFAUT : Semaine Type</strong>
+                        <div class="small-text">
+                            Les horaires réguliers d'une semaine type s'appliquent si aucune exception n'existe.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>Règle métier clé :</strong>
+                Si vous fermez un jour dans la Semaine Type (par exemple le dimanche), cette fermeture sera effective
+                pour chaque dimanche de l'année, SAUF si vous définez une exception pour un dimanche en particulier.
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 4. CRÉER UN CALENDRIER -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="create">4. Créer un nouveau calendrier (Pas à pas)</h2>
+
+            <h3 class="guide-h3">Quand créer un nouveau calendrier ?</h3>
+            <ul class="steps-sub">
+                <li>Vous lancez un nouveau service client</li>
+                <li>Vous créez une nouvelle file d'attente avec des horaires différents</li>
+                <li>Vous gérez une nouvelle zone géographique avec un fuseau horaire différent</li>
+                <li>Vous avez besoin de configurations d'horaires radicalement différentes</li>
+            </ul>
+
+            <h3 class="guide-h3">Procédure complète</h3>
+            <ol class="steps">
+                <li>
+                    <strong>Accédez à la page de gestion des calendriers</strong>
+                    <ul class="steps-sub">
+                        <li class="steps">Depuis le menu principal, choisissez le type de calendrier que vous souhaitez
+                            créer en cliquant sur:</li>
+                        <span class="bouton_menu font-hp">Calendrier Vocal</span><br /><span
+                            class="bouton_menu font-hp">Calendrier De distribution</span><br /><span
+                            class="bouton_menu font-hp">Calendrier Cible</span><br /><br />
+                        <li>Choisissez le type : Vocal, Distribution ou Cible</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Cliquez sur le bouton "Nouveau calendrier"</strong>
+                    <ul class="steps-sub">
+                        <li class="steps">Localisez le bouton <span class="btn-tag btn-primary">📆 Nouveau
+                                calendrier</span></li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Remplissez l'identifiant (ID) du calendrier</strong>
+                    <ul class="steps-sub">
+                        <li class="steps"><strong>Format obligatoire :</strong> <code>SERVICEXXXXXX</code> ou
+                            <code>SERVICE_XXXXXX</code></li>
+                        <li><strong>Caractères autorisés :</strong> Lettres (A-Z), chiffres (0-9), tiret sans espace
+                        </li>
+                        <li><strong>Caractères interdits :</strong> Espaces, accents, caractères spéciaux</li>
+                        <li><strong>Astuce :</strong> Utilisez des noms métier compréhensibles
+                            (ex: <code>SUPPORT_CLIENT_N1</code>, <code>VENTE_STANDARD</code>)</li>
+                        <li><strong>Attention :</strong> Cet ID est unique et ne peut pas être changé après création
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Remplissez le nom du calendrier</strong>
+                    <ul class="steps-sub">
+                        <li class="steps"><strong>Format :</strong> Texte libre, clair et descriptif</li>
+                        <li><strong>Exemple bon :</strong> "Support Technique - Équipe N1 - Europe"</li>
+                        <li><strong>Exemple mauvais :</strong> "Cal1", "xxx"</li>
+                        <li>Ce nom s'affichera dans les listes et rapports</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Sélectionnez le fuseau horaire</strong>
+                    <ul class="steps-sub">
+                        <li><strong>Impact critique :</strong> Le fuseau horaire détermine comment les horaires absolus
+                            sont calculés</li>
+                        <li><strong>Exemple :</strong> Si vous mettez "09:00 CET", il sera 09:00 dans l'Europe Centrale
+                        </li>
+                        <li><strong>Erreur courante :</strong> Sélectionner le mauvais fuseau horaire décale tous les
+                            horaires</li>
+                        <li>Si vous gérez plusieurs zones, créez des calendriers séparés par zone</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Validez la création</strong>
+                    <ul class="steps-sub">
+                        <li>Cliquez sur <span class="btn-tag btn-primary">Créer le calendrier</span></li>
+                        <li>Attendre la confirmation (un message de succès apparaît)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Définissez le type de calendrier</strong>
+                    <ul class="steps-sub">
+                        <li><strong>Vocal :</strong> Pour les calendriers contrôlant les messages audios et horaires
+                            d'ouverture</li>
+                        <li><strong>Distribution :</strong> Pour les calendriers contrôlant le routage vers les files
+                            d'attente (Queues)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Configurez les horaires</strong>
+                    <ul class="steps-sub">
+                        <li>Le calendrier est créé mais vide. Vous devez maintenant définir la Semaine Type et les
+                            exceptions</li>
+                        <li>Voir section 5 et 6 ci-dessous</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="success-box">
+                <strong>Conseil :</strong>
+                Dupliquez un calendrier existant plutôt que d'en créer un nouveau si vous avez besoin d'horaires
+                similaires.
+                Cela vous fera gagner du temps significativement.
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 5. ÉDITER UN CALENDRIER -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="edit">5. Éditer un calendrier existant</h2>
+
+            <h3 class="guide-h3">Accéder à l'éditeur de calendrier</h3>
+            <ol class="steps">
+                <li>Sélectionnez le calendrier dans la liste des calendriers disponibles</li>
+                <li>Cliquez sur <span class="btn-tag btn-primary">✏️ Éditer</span></li>
+                <li>L'éditeur de calendrier s'ouvre dans une interface dédiée</li>
+            </ol>
+
+            <h3 class="guide-h3">Interface d'édition</h3>
+            <p>
+                L'éditeur comporte plusieurs sections tab(onglets) et éléments :
+            </p>
+
+            <ul class="steps-sub">
+                <li><strong>Vue annuelle du calendrier :</strong> Affiche les 12 mois de l'année avec codes couleurs
+                </li>
+                <li><strong>Onglet "Semaine Type" :</strong> Configuration des horaires réguliers (voir section 6)</li>
+                <li><strong>Onglet "Jours d'exception" :</strong> Gestion des jours spéciaux et fériés (voir section 7)
+                </li>
+                <li><strong>Bouton "Sauvegarder" :</strong> Persiste vos changements (ESSENTIEL)</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ Attention très importante :</strong>
+                Les modifications ne sont sauvegardées qu'après avoir cliqué sur le bouton <span
+                    class="btn-tag btn-primary">Sauvegarder</span>.
+                Si vous fermez l'éditeur sans sauvegarder, tous vos changements seront perdus.
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 6. SEMAINE TYPE -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="semaine-type">6. Configurer la Semaine Type</h2>
+
+            <h3 class="guide-h3">Qu'est-ce que la Semaine Type ?</h3>
+            <p>
+                La Semaine Type est un modèle qui définit les horaires réguliers pour chaque jour de la semaine
+                (Lundi au Dimanche). Cette configuration s'applique à <strong>chaque semaine de l'année</strong> SAUF
+                quand
+                une exception spécifique est définie pour un jour donné.
+            </p>
+
+            <p>
+                En d'autres termes : la Semaine Type est votre configuration "par défaut" pour l'ensemble de l'année.
+            </p>
+
+            <h3 class="guide-h3">Étapes de configuration</h3>
+            <ol class="steps">
+                <li>
+                    <strong>Ouvrez l'onglet "Semaine Type"</strong>
+                    <ul class="steps-sub">
+                        <li>Depuis l'éditeur de calendrier, localisez l'onglet <span class="btn-tag">Semaine Type</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Pour chaque jour de la semaine, choisissez un état</strong>
+                    <ul class="steps-sub">
+                        <li><strong>Fermé tous la journée :</strong> Le jour n'est pas en service</li>
+                        <li><strong>Ouvert avec horaires spécifiques :</strong> Définissez heure d'ouverture et
+                            fermeture</li>
+                        <li><strong>États avancés :</strong> "Sans attente" ou "Pré-fermeture" si configuré</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Définissez les horaires (si applicable)</strong>
+                    <ul class="steps-sub">
+                        <li><strong>Heure d'ouverture :</strong> Quand le service commence (ex: 09:00)</li>
+                        <li><strong>Heure de fermeture :</strong> Quand le service se termine (ex: 18:00)</li>
+                        <li><strong>Format :</strong> HH:MM (24h), ex: 14:30, 09:00</li>
+                        <li><strong>Validation :</strong> L'heure d'ouverture DOIT être avant l'heure de fermeture</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Répétez pour les 7 jours</strong>
+                    <ul class="steps-sub">
+                        <li>Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi, Dimanche</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Cliquez sur "Sauvegarder"</strong>
+                    <ul class="steps-sub">
+                        <li>Vos changements sont validés et persistés</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3 class="guide-h3">Exemple de configuration standard</h3>
+            <table class="guide-table">
+                <thead>
+                    <tr>
+                        <th>Jour</th>
+                        <th>État</th>
+                        <th>Horaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lundi</td>
+                        <td>Ouvert</td>
+                        <td>09:00 - 18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Mardi</td>
+                        <td>Ouvert</td>
+                        <td>09:00 - 18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Mercredi</td>
+                        <td>Ouvert</td>
+                        <td>09:00 - 18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Jeudi</td>
+                        <td>Ouvert</td>
+                        <td>09:00 - 18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Vendredi</td>
+                        <td>Ouvert</td>
+                        <td>09:00 - 17:00</td>
+                    </tr>
+                    <tr>
+                        <td>Samedi</td>
+                        <td>Fermé</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Dimanche</td>
+                        <td>Fermé</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <strong>Ce que signifie cette configuration :</strong>
+                Le service ferme en semaine du lundi au vendredi (fermé samedi et dimanche). Ouvert de 09:00 à 18:00 du
+                lundi au jeudi,
+                et ferme une heure plus tôt le vendredi (17:00).
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 7. EXCEPTIONS -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="exceptions">7. Gérer les jours d'exception (Fériés et cas spéciaux)</h2>
+
+            <h3 class="guide-h3">Qu'est-ce qu'une exception ?</h3>
+            <p>
+                Une exception est une formation spécifique pour un jour particulier qui <strong>surpasse la Semaine
+                    Type</strong>.
+                Elle vous permet de gérer :
+            </p>
+
+            <ul class="steps-sub">
+                <li>Les jours fériés (1er janvier, 25 décembre, etc.)</li>
+                <li>Les jours de fermeture exceptionnelle (grève, maintenance, événement)</li>
+                <li>Les jours d'horaires spéciaux (réduction horaire, augmentation)</li>
+                <li>Les jours de fermeture uniquement en matinée ou en après-midi</li>
+            </ul>
+
+            <h3 class="guide-h3">Ajouter une exception</h3>
+            <ol class="steps">
+                <li>
+                    <strong>Ouvrez l'onglet "Jours d'exception"</strong>
+                </li>
+                <li>
+                    <strong>Cliquez sur "Ajouter une exception"</strong>
+                    <ul class="steps-sub">
+                        <li>Un formulaire s'affiche</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Sélectionnez la date</strong>
+                    <ul class="steps-sub">
+                        <li>Utilisez le calendrier ou entrez la date manuellement</li>
+                        <li>Format : JJ/MM/YYYY ou sélection visuelle</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Choisissez l'état pour ce jour</strong>
+                    <ul class="steps-sub">
+                        <li><strong>Fermé toute la journée :</strong> Par ex pour un jour férié</li>
+                        <li><strong>Ouvert avec horaires différents :</strong> Ex: 10:00 - 16:00 pour une réduction</li>
+                        <li><strong>État spécialisé :</strong> "Sans attente", "Pré-fermeture"</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Entrez une description (optionnel mais recommandé)</strong>
+                    <ul class="steps-sub">
+                        <li>Ex: "Jour férié - Noël", "Fermeture maintenance", "Réunion d'équipe"</li>
+                        <li>Cela aide à comprendre pourquoi cette exception existe</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Cliquez sur "Ajouter"</strong>
+                </li>
+                <li>
+                    <strong>Le jour apparaît maintenant dans la liste des exceptions</strong>
+                    <ul class="steps-sub">
+                        <li>Sur le calendrier annuel, il est marqué avec une bordure et une couleur particulière</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Cliquez sur "Sauvegarder" pour persister</strong>
+                </li>
+            </ol>
+
+            <h3 class="guide-h3">Modifier une exception existante</h3>
+            <ol class="steps">
+                <li>Dans la liste des exceptions, identifiez le jour à modifier</li>
+                <li>Cliquez sur l'icône <span class="btn-tag">✏️</span> (éditer)</li>
+                <li>Modifiez les détails (date, état, horaires, description)</li>
+                <li>Cliquez sur "Mettre à jour"</li>
+                <li>Sauvegardez les changements globaux</li>
+            </ol>
+
+            <h3 class="guide-h3">Supprimer une exception</h3>
+            <ol class="steps">
+                <li>Dans la liste des exceptions, identifiez le jour à supprimer</li>
+                <li>Cliquez sur l'icône <span class="btn-tag">🗑️</span> (supprimer)</li>
+                <li>Confirmez la suppression</li>
+                <li>Sauvegardez</li>
+            </ol>
+
+            <div class="example-box">
+                <strong>Exemple 1 - Jour férié :</strong>
+                <ul class="small-margin">
+                    <li>Date : 25/12/2026 (Noël)</li>
+                    <li>État : Fermé</li>
+                    <li>Description : "Jour férié - Noel"</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <strong>Exemple 2 - Horaires spéciaux :</strong>
+                <ul class="small-margin">
+                    <li>Date : 24/12/2026 (Veille de Noël)</li>
+                    <li>État : Ouvert</li>
+                    <li>Horaires : 10:00 - 14:00 (horaires réduits)</li>
+                    <li>Description : "Horaires spéciaux - Veille de Noël"</li>
+                </ul>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 8. ÉTATS ET HORAIRES -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="states">8. États et horaires : Guide détaillé</h2>
+
+            <h3 class="guide-h3">Les différents états disponibles</h3>
+
+            <h4 class="guide-h4">1. OUVERT (🟪 Lavande/Violet clair)</h4>
+            <p>
+                <strong>Signification :</strong> Le service est pleinement opérationnel. Les appels sont acceptés,
+                traités immédiatement ou mis en attente normalement, les agents reçoivent les appels.
+            </p>
+            <p>
+                <strong>Quand l'utiliser :</strong> Heures de service normales et prévues.
+            </p>
+            <p>
+                <strong>Horaires :</strong> HH:MM - HH:MM (obligatoire)
+            </p>
+
+            <h4 class="guide-h4">2. OUVERT - SANS ATTENTE (🟪 Violet/Mauve)</h4>
+            <p>
+                <strong>Signification :</strong> Le service est accessible, mais la mise en attente des appels est
+                désactivée. Les appels arrivent directement aux agents disponibles. Si aucun agent n'est libre,
+                l'appel peut être rejeté ou redirigé.
+            </p>
+            <p>
+                <strong>Quand l'utiliser :</strong>
+            </p>
+            <ul class="steps-sub">
+                <li>Fin de journée quand on réduit progressivement l'activité</li>
+                <li>Équipe en nombre réduit</li>
+                <li>Services de faible priorité ou secondaires</li>
+            </ul>
+
+            <h4 class="guide-h4">3. PRÉ-FERMETURE (🟫 Marron)</h4>
+            <p>
+                <strong>Signification :</strong> Phase de transition avant fermeture. Le service accepte encore des
+                appels,
+                mais on signale qu'il ferme bientôt. Peut décourager les appels ou orienter vers d'autres files.
+            </p>
+            <p>
+                <strong>Quand l'utiliser :</strong> 30-60 minutes avant la fermeture réelle.
+            </p>
+
+            <h4 class="guide-h4">4. FERMÉ (🟩 Gris foncé)</h4>
+            <p>
+                <strong>Signification :</strong> Le service est complètement fermé. Les appels sont rejetés ou redirigés
+                vers une alternative (message d'accueil, autre file, boîte vocale).
+            </p>
+            <p>
+                <strong>Quand l'utiliser :</strong> Heures de fermeture (soirée, nuit, week-end, jours fériés).
+            </p>
+
+            <h3 class="guide-h3">Configuration d'une journée : Workflow typique</h3>
+            <div class="workflow-step">
+                <div class="workflow-box">09:00</div>
+                <div class="workflow-arrow">🡪</div>
+                <div class="workflow-box">OUVERT</div>
+            </div>
+            <div class="workflow-step">
+                <div class="workflow-box">17:30</div>
+                <div class="workflow-arrow">🡪</div>
+                <div class="workflow-box">PRÉ-FERMETURE</div>
+            </div>
+            <div class="workflow-step">
+                <div class="workflow-box">18:00</div>
+                <div class="workflow-arrow">🡪</div>
+                <div class="workflow-box">FERMÉ</div>
+            </div>
+
+            <div class="example-box">
+                <strong>Interprétation :</strong>
+                Le service ouvre à 09:00 en mode normal. À partir de 17:30, il passe en pré-fermeture
+                (phase de transition). À 18:00, il ferme complètement.
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 9. DUPLIQUER -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="duplicate">9. Dupliquer un calendrier existant</h2>
+
+            <h3 class="guide-h3">Pourquoi dupliquer ?</h3>
+            <p>
+                Dupliquer est la façon la plus rapide de créer des calendriers similaires. Au lieu de reconfigurer
+                chaque jour,
+                vous copiez un calendrier existant et le modifiez légèrement.
+            </p>
+
+            <h3 class="guide-h3">Procédure</h3>
+            <ol class="steps">
+                <li>
+                    <strong>Sélectionnez le calendrier à dupliquer</strong>
+                    <ul class="steps-sub">
+                        <li>Choisissez parmi la liste des calendriers disponibles</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Cliquez sur "Dupliquer" ou "Copier"</strong>
+                    <ul class="steps-sub">
+                        <li>Localiser le bouton d'actions (⋯ ou menu déroulant)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Nommez le nouveau calendrier</strong>
+                    <ul class="steps-sub">
+                        <li><strong>ID unique :</strong> Le système génère automatiquement un suffixe (ex:
+                            <code>SUPPORT_CLIENT_N1_COPY</code>)</li>
+                        <li><strong>Vous pouvez modifier :</strong> Le nom descriptif</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Validez</strong>
+                    <ul class="steps-sub">
+                        <li>Un nouveau calendrier est créé avec l'exact configuration du calendrier source</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Modifiez si needed</strong>
+                    <ul class="steps-sub">
+                        <li>Éditez le nouveau calendrier pour pouvoir le différencier de l'original si nécessaire</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="success-box">
+                <strong>Économie de temps :</strong>
+                Dupliquer puis ajuster (5 min) est beaucoup plus rapide que créer à zéro (20+ min).
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 10. BONNES PRATIQUES -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="best-practices">10. Bonnes pratiques et recommandations</h2>
+
+            <h3 class="guide-h3">✅ À faire</h3>
+
+            <div class="success-box">
+                <strong>1. Nommer clairement vos calendriers</strong>
+                <p class="small-margin">
+                    Utilisez des noms qui décrivent le service, la zone, où le niveau (ex: "SUPPORT_MAIL_TIER2_EUROPE")
+                    plutôt que génériques (ex: "CAL1").
+                </p>
+            </div>
+
+            <div class="success-box">
+                <strong>2. Définir dans la Semaine Type les règles qui s'appliquent 90% de l'année</strong>
+                <p class="small-margin">
+                    Ne mettez en exception que les cas vraiment exceptionnels. Moins vous avez d'exceptions, moins
+                    il y a de risques d'erreurs et plus c'est facile à maintenir.
+                </p>
+            </div>
+
+            <div class="success-box">
+                <strong>3. Documenter les exceptions</strong>
+                <p class="small-margin">
+                    Utilisez toujours le champ "Description" pour les exceptions afin que d'autres utilisateurs
+                    comprennent pourquoi cette exception existe.
+                </p>
+            </div>
+
+            <div class="success-box">
+                <strong>4. Préférer la duplication</strong>
+                <p class="small-margin">
+                    Si vous créez plusieurs calendriers similaires, dupliquez plutôt que de créer à zéro.
+                </p>
+            </div>
+
+            <div class="success-box">
+                <strong>5. Valider avant de sauvegarder</strong>
+                <p class="small-margin">
+                    Avant de cliquer sur "Sauvegarder", relisez la Semaine Type et les exceptions pour détecter les
+                    erreurs.
+                </p>
+            </div>
+
+            <div class="success-box">
+                <strong>6. Utiliser le fuseau horaire correct</strong>
+                <p class="small-margin">
+                    Si votre équipe est répartie dans plusieurs zones, créez des calendriers séparés avec les bons
+                    fuseaux horaires.
+                </p>
+            </div>
+
+            <h3 class="guide-h3">❌ À éviter</h3>
+
+            <div class="warning-box">
+                <strong>1. Ne pas confondre exception et Semaine Type</strong>
+                <p class="small-margin">
+                    Si vous avez l'habitude de fermer le samedi, c'est une règle Semaine Type, pas une exception.
+                    Les exceptions, c'est pour les déviations rares.
+                </p>
+            </div>
+
+            <div class="warning-box">
+                <strong>2. Utiliser des IDs de calendrier génériques ou mal formatés</strong>
+                <p class="small-margin">
+                    Évitez <code>TEMP</code>, <code>TEST</code>, <code>XXXX</code> ou <code>CAL_ABC</code>.
+                    Les IDs doivent être auto-explicatifs.
+                </p>
+            </div>
+
+            <div class="warning-box">
+                <strong>3. Oublier de sauvegarder</strong>
+                <p class="small-margin">
+                    Les modifications ne sont pas automatiques. Vous DEVEZ cliquer sur "Sauvegarder" sinon tout est
+                    perdu.
+                </p>
+            </div>
+
+            <div class="warning-box">
+                <strong>4. Créer des exceptions pour chaque jour</strong>
+                <p class="small-margin">
+                    Si tous les jours sont en exception, vous vous trompez conceptuellement. Utilisez la Semaine Type
+                    pour les horaires normaux.
+                </p>
+            </div>
+
+            <div class="warning-box">
+                <strong>5. Ne pas tenir à jour régulièrement</strong>
+                <p class="small-margin">
+                    Pensez aux événements annuels (vacances d'été, augmentation de volume, maintenance programmée).
+                    Préparez les calendriers à l'avance.
+                </p>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 11. ERREURS COURANTES -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="common-errors">11. Erreurs courantes et solutions</h2>
+
+            <h3 class="guide-h3">Liste des erreurs rencontrées</h3>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>❌ "Impossible de sauvegarder" ou message d'erreur vague</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <h4 class="guide-h4">Causes possibles :</h4>
+                    <ul class="steps-sub">
+                        <li><strong>Format d'ID invalide :</strong> Contient des espaces, accents, ou caractères
+                            spéciaux</li>
+                        <li><strong>ID déjà existant :</strong> Un autre calendrier porte le même ID</li>
+                        <li><strong>Horaires invalides :</strong> L'heure de fermeture est avant l'ouverture (ex: 18:00
+                            - 09:00)</li>
+                        <li><strong>Connexion AWS perdue :</strong> Vérifiez votre connexion</li>
+                    </ul>
+                    <h4 class="guide-h4">Solutions :</h4>
+                    <ol class="steps-sub">
+                        <li>Vérifiez que votre ID suit le format <strong>LETTRES_CHIFFRES</strong> (pas d'espaces)</li>
+                        <li>Vérifiez que les horaires sont au bon format : HH:MM (24h)</li>
+                        <li>Assurez-vous que l'heure d'ouverture &lt; heure de fermeture</li>
+                        <li>Essayez à nouveau après quelques secondes</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>❌ Les horaires du calendrier ne correspondent pas à la réalité</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <h4 class="guide-h4">Causes possibles :</h4>
+                    <ul class="steps-sub">
+                        <li><strong>Mauvais fuseau horaire :</strong> Vous avez sélectionné "UTC" au lieu de
+                            "Europe/Paris"</li>
+                        <li><strong>Décalage de 1 heure :</strong> Confusion entre heure d'été et d'hiver</li>
+                    </ul>
+                    <h4 class="guide-h4">Solutions :</h4>
+                    <ol class="steps-sub">
+                        <li>Ouvrez l'éditeur du calendrier</li>
+                        <li>Cliquez sur <span class="btn-tag">Éditer les propriétés</span></li>
+                        <li>Vérifiez le fuseau horaire : doit correspondre à la localisation de l'équipe</li>
+                        <li>Changez-le si nécessaire</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>❌ Une exception que j'ai créée n'apparaît pas</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <h4 class="guide-h4">Causes possibles :</h4>
+                    <ul class="steps-sub">
+                        <li><strong>Vous avez oublié de sauvegarder :</strong> Vous avez créé l'exception mais pas
+                            cliqué sur "Sauvegarder"</li>
+                        <li><strong>Le calendrier affiche l'année précédente :</strong> La date d'exception est dans
+                            2025, le calendrier affiche 2024</li>
+                    </ul>
+                    <h4 class="guide-h4">Solutions :</h4>
+                    <ol class="steps-sub">
+                        <li>Cliquez sur <span class="btn-tag btn-primary">Sauvegarder</span></li>
+                        <li>Rafraîchissez le navigateur (F5)</li>
+                        <li>Vérifiez que vous regardez la bonne année</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>❌ Changement d'heure d'été/hiver : les horaires décalent</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <h4 class="guide-h4">Explication :</h4>
+                    <p>
+                        Ceci est un comportement NORMAL et ATTENDU. Les heures d'été sont gérées automatiquement par
+                        Amazon,
+                        mais certaines zones peuvent afficher des décalages temporaires.
+                    </p>
+                    <h4 class="guide-h4">Solutions :</h4>
+                    <ol class="steps-sub">
+                        <li>Vérifiez les dates exactes du changement d'heure (généralement dernier dimanche de mars et
+                            octobre)</li>
+                        <li>Créez des exceptions pour les jours autour du changement si nécessaire</li>
+                        <li>Consultez votre administrateur système</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>❌ Impossible à dupliquer un calendrier</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <h4 class="guide-h4">Causes possibles :</h4>
+                    <ul class="steps-sub">
+                        <li><strong>Permissions insuffisantes :</strong> Vous n'avez pas le droit de créer un nouveau
+                            calendrier</li>
+                        <li><strong>Quota atteint :</strong> Nombre maximum de calendriers dépassé</li>
+                    </ul>
+                    <h4 class="guide-h4">Solutions :</h4>
+                    <ol class="steps-sub">
+                        <li>Vérifiez vos permissions avec l'administrateur</li>
+                        <li>Supprimez des calendriers inutilisés si vous avez atteint la limite</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 12. FAQ -->
+            <!-- ============================================================ -->
+            <h2 class="guide-h2" id="faq">12. Questions fréquemment posées (FAQ)</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q: Puis-je modifier un ID de calendrier après sa création ?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <strong>R :</strong> Non. L'ID est fixe et immuable. Si vous devez absolument changer d'ID,
+                    vous devez dupliquer le calendrier avec un nouvel ID et supprimer l'ancien.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q: Deux calendriers peuvent-ils avoir des horaires qui se chevauchent ?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <strong>R :</strong> Oui, complètement normal. C'est même courant. Par exemple, un calendrier
+                    "Support N1" est ouvert 8h-22h et un calendrier "Support N2" est ouvert 9h-20h. Pendant 9h-20h,
+                    les deux files peuvent être actives simultanément.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q: Comment gérer un service qui fonctionne 24h/24 ?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <strong>R :</strong> Configurez la Semaine Type ainsi :
+                    <ul class="steps-sub">
+                        <li>Tous les jours : Ouvert - 00:00 à 23:59</li>
+                        <li>Aucune exception si ces horaires ne changent jamais</li>
+                    </ul>
+                    Note: Les horaires acceptés vont de 00:00 à 23:59 (fin de journée maximale).
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q: Que se passe-t-il si je supprime un calendrier utilisé par une queue ?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <strong>R :</strong> Cela généralement génère une erreur ou un dysfonctionnement.
+                    Avant de supprimer, assurez-vous que le calendrier n'est assigné à aucun service actif.
+                    Consultez votre administrateur ou les configurations Amazon Connect.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q: Peut-on avoir différents fuseaux horaires pour un même calendrier ?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <strong>R :</strong> Non. Un calendrier a un seul fuseau horaire. Si vous gérez des équipes
+                    dans des zones différentes (ex: Paris et Mumbai), créez des calendriers séparés avec les fuseaux
+                    corrects.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q: À quelle fréquence le calendrier est-il mis à jour dans le système ?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <strong>R :</strong> Après que vous cliquiez sur "Sauvegarder", les changements sont généralement
+                    appliqués immédiatement. Cependant, il peut y avoir un délai de quelques secondes à quelques minutes
+                    avant que les changements soient visibles dans Amazon Connect.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q: Puis-je voir l'historique des modifications d'un calendrier ?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <strong>R :</strong> Pas directement dans l'interface de gestion des calendriers. Cependant,
+                    Amazon Connect et AWS Cloud Trail conservent des logs des modifications. Contactez votre
+                    administrateur
+                    pour l'accès aux audits.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q: Comment tester un calendrier avant de l'appliquer en production ?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <strong>R :</strong> Créez un calendrier de test avec un ID clairement marqué (ex:
+                    <code>TEST_SUPPORT</code>).
+                    Configurez-le comme vous le souhaitez, puis testez-le en l'assignant à une queue de test
+                    avant de l'appliquer aux queues de production.
+                </div>
+            </div>
+
+
+    </main>
+
+
+    <script>
+        // FAQ TOGGLE
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const isActive = element.classList.toggle('active');
+            answer.classList.toggle('active', isActive);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Utilisateur - Gestion des Situations</title>
+    <link rel="stylesheet" href="../css/salesforce-lightning-design-system.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+</head>
+
+<body class="slds-scope">
+    <div class="slds-p-around_medium">
+        <h1 class="guide-h1">🗓️ Guide Utilisateur : Gestion des Situations</h1>
+        <p class="subtitle">
+            Ce module vous permet de créer et de configurer des situations prédéfinies (ex: Fête Nationale, Soldes, Intempéries) qui pourront ensuite être affectées à vos structures.
+        </p>
+
+        <section class="guide-section">
+            <h2>1. Créer une nouvelle situation</h2>
+            <p>
+                Cliquez sur le bouton <strong>➕ Nouvelle Situation</strong> pour ouvrir le formulaire de création.
+            </p>
+            <ul>
+                <li><strong>Nom :</strong> L'identifiant clair de la situation (ex: NOEL_2026).</li>
+                <li><strong>Priorité :</strong> Au cas où plusieurs situations se superposent sur les mêmes dates, celle avec la priorité la plus haute (le chiffre le plus élevé) l'emportera.</li>
+            </ul>
+        </section>
+
+        <section class="guide-section">
+            <h2>2. Périodes de Validité</h2>
+            <p>
+                Chaque situation doit contenir au moins une période de validité. Une période correspond à un intervalle de dates spécifique.
+            </p>
+            <div class="info-box">
+                <strong>Ajout dynamique :</strong> Vous pouvez ajouter autant de périodes que nécessaire à une même situation à l'aide du bouton <strong>➕ Ajouter une période</strong>.
+            </div>
+            <ul>
+                <li><strong>Date de début et fin :</strong> Définissent le créneau durant lequel la situation sera active.</li>
+                <li><strong>Suppression :</strong> Vous pouvez utiliser l'icône 🗑️ pour retirer une période de la situation.</li>
+            </ul>
+        </section>
+
+        <section class="guide-section">
+            <h2>3. Actions sur les situations existantes</h2>
+            <p>
+                Depuis le tableau principal, vous pouvez :
+            </p>
+            <ul>
+                <li><strong>Éditer (✏️) :</strong> Modifier le nom, la priorité ou les périodes d'une situation existante.</li>
+                <li><strong>Supprimer (🗑️) :</strong> Supprimer définitivement une situation. Attention, cette action est irréversible et retirera la situation de toutes les structures où elle était active.</li>
+            </ul>
+        </section>
+    </div>
+</body>
+
+</html>

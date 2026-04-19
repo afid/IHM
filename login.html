@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Connexion AWS - IHM Afid</title>
+
+    <!-- Salesforce Lightning Design System (SLDS) CSS -->
+    <link rel="stylesheet" href="css/salesforce-lightning-design-system.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS for Login Page -->
+    <link rel="stylesheet" href="css/login.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+</head>
+<body class="slds-scope">
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-card-logo">
+                <img src="img/logo.png" alt="IHM Afid Logo">
+            </div>
+            <!--
+                FORMULAIRE DE CONNEXION :
+                C'est ici que l'utilisateur saisit ses identifiants AWS.
+                Ces informations ne sont pas stockées sur le serveur, mais utilisées directement
+                dans le navigateur pour s'authentifier auprès d'Amazon Web Services.
+            -->
+            <div id="notification-box" class="slds-m-top_medium"></div>
+            <form id="loginForm">
+                <!-- CHAMP 1 : Access Key (Identifiant public) -->
+                <div class="slds-form-element slds-m-bottom_medium">
+                    <label class="slds-form-element__label" for="accessKey">Access Key</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="accessKey" required class="slds-input" placeholder="AKIA..." />
+                    </div>
+                </div>
+
+                <!-- CHAMP 2 : Secret Key (Mot de passe secret) -->
+                <div class="slds-form-element slds-m-bottom_medium">
+                    <label class="slds-form-element__label" for="secretKey">Secret Key</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="secretKey" required class="slds-input" placeholder="Entrez votre clé secrète" />
+                    </div>
+                </div>
+
+                <!-- Session Token -->
+                <div class="slds-form-element slds-m-bottom_medium">
+                    <label class="slds-form-element__label" for="sessionToken">
+                        Session Token
+                        <span class="optional-label">(Optionnel)</span>
+                    </label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="sessionToken" class="slds-input" placeholder="Requis pour connexion temporaire" />
+                    </div>
+                </div>
+
+                <!-- CHAMP 4 : Région AWS (Où se trouvent les données ?) -->
+                <div class="slds-form-element slds-m-bottom_medium">
+                    <label class="slds-form-element__label" for="region">Région</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <select id="region" class="slds-select">
+                                <optgroup label="United States">
+                                    <option value="us-east-1">N. Virginia (us-east-1)</option>
+                                    <option value="us-east-2">Ohio (us-east-2)</option>
+                                    <option value="us-west-1">N. California (us-west-1)</option>
+                                    <option value="us-west-2">Oregon (us-west-2)</option>
+                                </optgroup>
+                                <optgroup label="Asia Pacific">
+                                    <option value="ap-south-1">Mumbai (ap-south-1)</option>
+                                    <option value="ap-northeast-3">Osaka (ap-northeast-3)</option>
+                                    <option value="ap-northeast-2">Seoul (ap-northeast-2)</option>
+                                    <option value="ap-southeast-1">Singapore (ap-southeast-1)</option>
+                                    <option value="ap-southeast-2">Sydney (ap-southeast-2)</option>
+                                    <option value="ap-northeast-1">Tokyo (ap-northeast-1)</option>
+                                </optgroup>
+                                <optgroup label="Canada">
+                                    <option value="ca-central-1">Central (ca-central-1)</option>
+                                </optgroup>
+                                <optgroup label="Europe">
+                                    <option value="eu-central-1" selected>Frankfurt (eu-central-1)</option>
+                                    <option value="eu-west-1">Ireland (eu-west-1)</option>
+                                    <option value="eu-west-2">London (eu-west-2)</option>
+                                    <option value="eu-west-3">Paris (eu-west-3)</option>
+                                    <option value="eu-north-1">Stockholm (eu-north-1)</option>
+                                </optgroup>
+                                <optgroup label="South America">
+                                    <option value="sa-east-1">São Paulo (sa-east-1)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <div class="slds-checkbox">
+                            <input type="checkbox" name="options" id="rememberMe" value="on" />
+                            <label class="slds-checkbox__label" for="rememberMe">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-form-element__label">Se rappeler de moi</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="slds-button btn-login" id="submitBtn">Se Connecter</button>
+            </form>
+
+
+        </div>
+
+        <div class="form-footer">
+            &copy; 2026 IHM Afid - Sécurisé par AWS SDK
+        </div>
+    </div>
+
+    <!-- AWS SDK for JavaScript v2 -->
+    <!--
+        SCRIPTS DE CONNEXION :
+        - aws-sdk : Pour tester la connexion.
+        - login.js : Gère la soumission du formulaire et la sauvegarde des infos si "Se rappeler de moi" est coché.
+    -->
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1550.0.min.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

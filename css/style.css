@@ -1,0 +1,2217 @@
+/*
+   ================================================
+   VARIABLES CSS - COULEURS, ESPACEMENTS, TRANSITIONS
+   ================================================
+*/
+:root {
+    /* Couleurs principales */
+    --color-primary: #0070d2;
+    --color-primary-dark: #005fb2;
+    --color-primary-light: #0176d3;
+
+    /* Couleurs états calendrier */
+    --color-day-open: #f7ecfe;
+    --color-day-open-no-wait: #c5b3d5;
+    --color-day-pre-closed: #86565a;
+    --color-day-closed: #403b45;
+    --color-day-exception-closed: #9a6b62;
+    --color-day-weekly-closed: #f56044;
+    --color-day-holiday-closed: #d83d62;
+
+    /* Couleurs neutrales */
+    --color-white: #ffffff;
+    --color-bg-light: #f3f3f3;
+    --color-bg-lighter: #fafaf9;
+    --color-bg-very-light: #fdfdfd;
+    --color-text-dark: #080707;
+    --color-text-medium: #333333;
+    --color-text-light: #706e6b;
+    --color-text-secondary: #444444;
+    --color-border: #dddbda;
+    --color-border-light: #e0e0e0;
+    --color-border-dark: #555555;
+
+    /* Couleurs notifications */
+    --color-success: #28a745;
+    --color-error: #dc3545;
+    --color-error-dark: #ea001e;
+    --color-info: #17a2b8;
+    --color-warning: #ffc107;
+
+    /* Espacements */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+
+    /* Transitions */
+    --transition-quick: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Border radius */
+    --radius-sm: 3px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+    --radius-xl: 8px;
+
+    /* Box shadows */
+    --shadow-xs: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 6px 16px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/*
+   ================================================
+   CONFIGURATION DES POLICES DE CARACTÈRES
+   ================================================
+*/
+
+/* Rajdhani - Police pour les titres */
+@font-face {
+    font-family: 'Rajdhani';
+    src:
+        url('../fonts/Rajdhani/Rajdhani.woff2') format('woff2'),
+        url('../fonts/Rajdhani/Rajdhani.woff') format('woff'),
+        url('../fonts/Rajdhani/Rajdhani.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Rajdhani';
+    src:
+        url('../fonts/Rajdhani/Rajdhani-Bold.woff2') format('woff2'),
+        url('../fonts/Rajdhani/Rajdhani-Bold.woff') format('woff'),
+        url('../fonts/Rajdhani/Rajdhani-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* HP Simplified - Police pour le texte courant */
+@font-face {
+    font-family: 'HP Simplified';
+    src:
+        url('../fonts/hp/hpsimplified_lt.woff2') format('woff2'),
+        url('../fonts/hp/hpsimplified_lt.woff') format('woff'),
+        url('../fonts/hp/hpsimplified_lt.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HP Simplified';
+    src:
+        url('../fonts/hp/hpsimplified_rg.woff2') format('woff2'),
+        url('../fonts/hp/hpsimplified_rg.woff') format('woff'),
+        url('../fonts/hp/hpsimplified_rg.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HP Simplified';
+    src:
+        url('../fonts/hp/hpsimplified_bd.woff2') format('woff2'),
+        url('../fonts/hp/hpsimplified_bd.woff') format('woff'),
+        url('../fonts/hp/hpsimplified_bd.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Khand - Police alternative */
+@font-face {
+    font-family: 'Khand';
+    src:
+        url('../fonts/khand/Khand-Light.woff2') format('woff2'),
+        url('../fonts/khand/Khand-Light.woff') format('woff'),
+        url('../fonts/khand/Khand-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Khand';
+    src:
+        url('../fonts/khand/Khand-Regular.woff2') format('woff2'),
+        url('../fonts/khand/Khand-Regular.woff') format('woff'),
+        url('../fonts/khand/Khand-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Khand';
+    src:
+        url('../fonts/khand/Khand-Medium.woff2') format('woff2'),
+        url('../fonts/khand/Khand-Medium.woff') format('woff'),
+        url('../fonts/khand/Khand-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Khand';
+    src:
+        url('../fonts/khand/Khand-Semibold.woff2') format('woff2'),
+        url('../fonts/khand/Khand-Semibold.woff') format('woff'),
+        url('../fonts/khand/Khand-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Khand';
+    src:
+        url('../fonts/khand/Khand-Bold.woff2') format('woff2'),
+        url('../fonts/khand/Khand-Bold.woff') format('woff'),
+        url('../fonts/khand/Khand-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/*
+   ================================================
+   STRUCTURE ET MISE EN PAGE (Layout)
+   ================================================
+*/
+
+/* Barre de navigation tout en haut (Header) */
+.slds-global-header_container {
+    box-shadow: var(--shadow-xs);
+    z-index: 1001;
+}
+
+/* Le logo dans la barre d'en haut */
+.slds-global-header__logo {
+    background-image: none !important;
+}
+
+/* RESPONSIVE LOGOS */
+.logo-large {
+    display: block;
+    max-height: 40px;
+    /* Ajustez selon la taille souhaitée */
+}
+
+.logo-small {
+    display: none;
+    max-height: 40px;
+}
+
+/* Écrans mobiles (moins de 768px par ex.) */
+@media (max-width: 768px) {
+    .logo-large {
+        display: none;
+    }
+
+    .logo-small {
+        display: block;
+    }
+}
+
+/* Conteneur pour les icônes */
+.slds-icon_container {
+    font-size: 2rem;
+    line-height: 1;
+    display: flex;
+    /* Aligne l'icône proprement */
+    align-items: center;
+    justify-content: center;
+}
+
+/* STYLE DU BOUTON D'AIDE */
+.help-btn {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all var(--transition-quick);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Quand on passe la souris sur le bouton d'aide */
+.help-btn:hover {
+    background-color: var(--color-bg-light);
+    border-color: #c9c7c5;
+    transform: scale(1.1);
+}
+
+/* CONFIGURATION DES FENÊTRES SURGISSANTES (Modales) */
+.slds-modal.slds-fade-in-open {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Le fond grisé derrière une fenêtre ouverte */
+.slds-backdrop.slds-backdrop_open {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Correctif SLDS : empêche les éléments enfants avec visibility:visible de capter les clics quand le modal est fermé */
+.slds-modal:not(.slds-fade-in-open) {
+    pointer-events: none;
+    visibility: hidden !important;
+}
+
+.slds-modal:not(.slds-fade-in-open) * {
+    visibility: hidden !important;
+}
+
+/* Styles spécifiques au mode édition (dans les modales) */
+.slds-modal .slds-form-element__label {
+    font-weight: bold;
+}
+
+.slds-modal .slds-form-element__help {
+    font-style: italic;
+    color: var(--color-text-light);
+}
+
+/* Images à l'intérieur de la fenêtre d'aide */
+#modal-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin-top: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* LE CONTENEUR PRINCIPAL DE L'APPLICATION */
+.app-container {
+    display: flex;
+    min-height: calc(100vh - 50px);
+    margin-top: 50px;
+    position: relative;
+}
+
+/* MENU LATÉRAL (Sidebar) */
+.sidebar {
+    width: 250px;
+    background: var(--color-bg-light);
+    border-right: 1px solid var(--color-border);
+    flex-shrink: 0;
+    transition: transform var(--transition-normal);
+    z-index: 1000;
+    overflow-y: auto;
+    height: calc(100vh - 50px);
+    position: sticky;
+    top: 50px;
+}
+
+/* ZONE DE CONTENU PRINCIPAL */
+.main-content {
+    flex-grow: 1;
+    overflow-x: hidden;
+    background: var(--color-bg-lighter);
+}
+
+/* BOUTON POUR OUVRIR LE MENU SUR MOBILE */
+.mobile-toggle {
+    display: none;
+    margin-right: var(--spacing-md);
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+/* STYLE DU MENU EN ACCORDÉON (Menu qui se déplie) */
+.accordion-section {
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* En-tête d'une section du menu */
+.accordion-header {
+    width: 100%;
+    text-align: left;
+    padding: var(--spacing-md);
+    background: var(--color-white);
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Khand', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-text-dark);
+    transition: background var(--transition-quick);
+}
+
+.accordion-header:hover {
+    background: var(--color-bg-light);
+}
+
+/* Contenu qui se cache ou s'affiche dans l'accordéon */
+.accordion-content {
+    display: none;
+    background: var(--color-bg-very-light);
+}
+
+/* Si la section est ouverte, on affiche le contenu */
+.accordion-section.is-open .accordion-content {
+    display: block;
+}
+
+/* Rotation de la petite flèche (icône) quand c'est ouvert */
+.accordion-section.is-open .accordion-icon {
+    transform: rotate(90deg);
+}
+
+.accordion-icon {
+    transition: transform var(--transition-quick);
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+}
+
+/* ================================================
+   HEADER - LOGOS, TICKER, LOGOUT
+   ================================================ */
+
+.header-logo {
+    height: 32px;
+    width: auto;
+}
+
+.header-right-section {
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.header-ticker-container {
+    width: 100%;
+    max-width: 800px;
+    min-width: 400px;
+    margin-right: 1.5rem;
+}
+
+.logout-btn {
+    color: #c23934;
+}
+
+.logout-icon {
+    font-size: 1.2rem;
+}
+
+.modal-close-icon {
+    font-size: 1.5rem;
+}
+
+/* ================================================
+   TABLE COLUMN WIDTHS
+   ================================================ */
+
+.th-col-60 {
+    width: 60px;
+}
+
+.th-col-100 {
+    width: 100px;
+}
+
+.th-col-150 {
+    width: 150px;
+}
+
+/* ================================================
+   SKELETON LOADERS - CALENDAR
+   ================================================ */
+
+.skeleton-calendar-side {
+    height: 300px;
+    width: 100%;
+}
+
+.skeleton-calendar-header {
+    height: 40px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.skeleton-calendar-body {
+    height: 300px;
+    width: 100%;
+}
+
+/* ================================================
+   RESPONSIVE DESIGN - MOBILE FIRST APPROACH
+   ================================================ */
+
+/* ===== TRÈS PETIT ÉCRAN (320px - 480px) ===== */
+@media (max-width: 480px) {
+
+    /* Layout ajustements */
+    .app-container {
+        min-height: calc(100vh - 45px);
+        margin-top: 45px;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: calc(100vh - 45px);
+        top: 45px;
+    }
+
+    /* Header ajustements */
+    .slds-global-header_container {
+        height: 45px;
+    }
+
+    /* Espacements réduits sur mobile */
+    .page-title {
+        font-size: 1.2rem;
+    }
+
+    /* Calendrier ajustements */
+    .month-block {
+        border-radius: var(--radius-lg);
+    }
+
+    .month-header {
+        padding: var(--spacing-sm);
+        font-size: 0.85rem;
+    }
+
+    .day-cell {
+        font-size: 0.75rem;
+    }
+
+    /* Réduction des marges en bas */
+    .guide-h1 {
+        font-size: 1.8rem;
+    }
+
+    .guide-h2 {
+        font-size: 1.3rem;
+        margin-top: var(--spacing-lg);
+    }
+
+    /* Tableau mobile */
+    .guide-table {
+        font-size: 0.85rem;
+    }
+
+    .guide-table th,
+    .guide-table td {
+        padding: var(--spacing-sm);
+    }
+
+    /* Formulaires */
+    input[type="time"],
+    input[type="date"],
+    .slds-input,
+    .slds-select {
+        font-size: 16px;
+        /* Prévient le zoom auto sur iOS */
+    }
+
+    /* Toast notifications */
+    #toast-container {
+        top: 10px;
+        right: 10px;
+    }
+
+    .toast-notification {
+        min-width: 280px;
+        max-width: 95vw;
+    }
+
+    /* Modal ajustements */
+    .slds-modal {
+        margin: 0 var(--spacing-sm);
+    }
+}
+
+/* ===== PETIT ÉCRAN (480px - 768px) ===== */
+@media (max-width: 768px) {
+
+    /* Espacements pour petits écrans */
+    .content {
+        padding: var(--spacing-lg);
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .mobile-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 50px;
+        height: calc(100vh - 50px);
+        transform: translateX(-100%);
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        width: 250px;
+    }
+
+    .sidebar.is-open {
+        transform: translateX(0);
+    }
+
+    .logo-large {
+        display: none;
+    }
+
+    .logo-small {
+        display: block;
+    }
+
+    .month-block {
+        margin: var(--spacing-sm);
+    }
+
+    /* Grille calendrier ajustée */
+    .color-legend {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tableau en petit */
+    .guide-table {
+        font-size: 0.9rem;
+    }
+
+    .faq-question {
+        font-size: 0.95rem;
+        padding: 1rem var(--spacing-md);
+    }
+}
+
+/* ===== TABLETTE / ÉCRAN MOYEN (768px - 1024px) ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar {
+        width: 220px;
+    }
+
+    .page-title {
+        font-size: 1.3rem;
+    }
+
+    .content {
+        padding: var(--spacing-xl);
+    }
+
+    .month-block {
+        margin: var(--spacing-md);
+    }
+
+    /* Grille calendrier - 2 mois par ligne */
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+
+    /* Légère réduction des titres */
+    .guide-h1 {
+        font-size: 2.2rem;
+    }
+
+    .guide-h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Colonne unique pour légende */
+    .color-legend {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== ÉCRAN LARGE (1024px+) ===== */
+@media (min-width: 1025px) {
+    .sidebar {
+        width: 250px;
+    }
+
+    .content {
+        padding: var(--spacing-2xl);
+    }
+
+    /* Grille calendrier - 3 mois par ligne */
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-lg);
+    }
+
+    /* Légende sur 3 colonnes */
+    .color-legend {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Accordéon plus confortable */
+    .faq-question {
+        padding: 1.3rem var(--spacing-lg);
+    }
+
+    .priority-level {
+        padding: 1.5rem var(--spacing-lg);
+    }
+}
+
+/* ===== TRÈS GRAND ÉCRAN (1440px+) ===== */
+@media (min-width: 1441px) {
+    .sidebar {
+        width: 280px;
+    }
+
+    .content {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    /* Grille calendrier - 4 mois par ligne sur très grand écran */
+    .calendar-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .guide-h1 {
+        font-size: 2.8rem;
+    }
+
+    /* Légende sur 4 colonnes */
+    .color-legend {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Priorité avec plus d'espace */
+    .priority-level {
+        padding: 1.8rem var(--spacing-2xl);
+        gap: var(--spacing-lg);
+    }
+
+    .steps li {
+        margin-bottom: var(--spacing-xl);
+        padding-left: 3.5rem;
+    }
+
+    .steps li::before {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.3rem;
+    }
+}
+
+
+/* BANDEAU DÉFILANT D'INFORMATIONS (News Ticker) */
+.news-ticker-container {
+    display: flex;
+    align-items: center;
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    height: 32px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+/* L'étiquette bleue "Dernière infos" */
+.news-ticker-label {
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: 0 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    z-index: 2;
+    white-space: nowrap;
+    font-family: 'HP Simplified', sans-serif;
+}
+
+/* Zone où défilent les messages */
+.news-ticker {
+    flex: 1;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+
+/* Un message d'information individuel */
+.news-item {
+    position: absolute;
+    white-space: nowrap;
+    font-family: 'HP Simplified', sans-serif;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+/* Si le message est actif (affiché) */
+.news-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Si le message est en train de sortir (montée vers le haut) */
+.news-item.exit {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* On cache le bandeau sur mobile pour gagner de la place */
+@media (max-width: 768px) {
+    .news-ticker-container {
+        display: none;
+    }
+}
+
+/* ================================================
+   UTILITAIRES - POLICES ET TRANSITIONS
+   ================================================ */
+
+/* Utilitaires pour les polices */
+.font-rajdhani {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.font-hp {
+    font-family: 'HP Simplified', sans-serif;
+}
+
+.font-khand {
+    font-family: 'Khand', sans-serif;
+}
+
+/* Utilitaires pour les transitions - Réduisent la redondance */
+.transition-quick-all {
+    transition: all var(--transition-quick);
+}
+
+.transition-quick-bg {
+    transition: background var(--transition-quick);
+}
+
+.transition-quick-transform {
+    transition: transform var(--transition-quick);
+}
+
+.transition-quick-box-shadow {
+    transition: box-shadow var(--transition-quick);
+}
+
+.transition-normal {
+    transition: all var(--transition-normal);
+}
+
+.transition-normal-transform {
+    transition: transform var(--transition-normal);
+}
+
+/* --- STYLES DU CALENDRIER ANNUEL --- */
+/* Cette section gère l'apparence de la grande grille du calendrier (Mois, Jours, Couleurs) */
+
+/* Un bloc représentant un mois complet (ex: le carré "Janvier") */
+.month-block {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    overflow: visible;
+    position: relative;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border-light);
+    transition: transform var(--transition-quick);
+}
+
+/* Effet quand on passe la souris sur un mois */
+.month-block:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+}
+
+/* En-tête du mois (ex: JANVIER 2026) */
+.month-header {
+    background: var(--color-primary-light);
+    color: var(--color-white);
+    padding: var(--spacing-md);
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+/* Ligne des jours de la semaine (LUN, MAR, ...) */
+.weekday-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: #3f93dba8;
+    color: #0b4084;
+    font-size: 0.8rem;
+    text-align: center;
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border-dark);
+    font-family: 'HP Simplified', sans-serif;
+}
+
+/* La grille des numéros de jours */
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: var(--spacing-sm);
+    gap: 2px;
+    overflow: visible;
+}
+
+/* Une case de jour individuelle */
+.day-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-family: 'HP Simplified', sans-serif;
+    color: var(--color-text-medium);
+    border-radius: var(--radius-sm);
+    cursor: default;
+    position: relative;
+    transition: background var(--transition-quick);
+}
+
+/* Case vide pour l'alignement (début du mois) */
+.day-cell.empty {
+    color: #ccc;
+    visibility: hidden;
+}
+
+/* Mise en évidence du jour d'aujourd'hui */
+.day-cell.today {
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--color-text-dark);
+}
+
+/* Effet au survol d'un jour */
+.day-cell:not(.empty):hover {
+    filter: brightness(0.9);
+    cursor: pointer;
+    z-index: 2000;
+}
+
+/* --- COULEURS D'ÉTAT DES JOURS --- */
+/* Pattern BEM : Classes modificateurs pour différents états de jour */
+
+/* Ouvert : Lavande (texte foncé) */
+.day-open {
+    background-color: var(--color-day-open);
+    color: var(--color-text-medium);
+}
+
+/* Ouvert sans attente : Lavande foncé (texte foncé) */
+.day-open-no-wait {
+    background-color: var(--color-day-open-no-wait);
+    color: var(--color-text-medium);
+}
+
+/* Pré-fermeture : Vieux rouge (texte clair) */
+.day-pre-closed {
+    background-color: var(--color-day-pre-closed);
+    color: var(--color-white);
+}
+
+/* Fermé : Anthracite (texte clair) */
+.day-closed {
+    background-color: var(--color-day-closed);
+    color: var(--color-white);
+}
+
+/* Fermeture exceptionnelle : Marron clair (texte clair) */
+.day-exception-closed {
+    background-color: var(--color-day-exception-closed);
+    color: var(--color-white);
+}
+
+/* Fermeture hebdomadaire : Orange (texte clair) */
+.day-weekly-closed {
+    background-color: var(--color-day-weekly-closed);
+    color: var(--color-white);
+}
+
+/* Fermeture jour férié : Rouge (texte clair) */
+.day-holiday-closed {
+    background-color: var(--color-day-holiday-closed);
+    color: var(--color-white);
+}
+
+
+
+/* --- TOOLTIPS (Bulles d'aide) --- */
+/* C'est la petite bulle noire qui apparaît quand on passe la souris sur un jour */
+
+.day-cell[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+/* La bulle elle-même */
+.day-cell[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2b2b2b;
+    color: var(--color-white);
+    padding: 8px 12px;
+    border-radius: var(--radius-lg);
+    font-size: 0.75rem;
+    white-space: pre-wrap;
+    width: max-content;
+    max-width: 250px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-quick);
+    box-shadow: var(--shadow-xl);
+    text-align: left;
+    pointer-events: none;
+    line-height: 1.4;
+}
+
+/* La petite flèche */
+.day-cell[data-tooltip]::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px;
+    border-style: solid;
+    border-color: #2b2b2b transparent transparent transparent;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Affichage au survol */
+.day-cell[data-tooltip]:hover::before,
+.day-cell[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: 115%;
+}
+
+.day-cell[data-tooltip]:hover::after {
+    bottom: 100%;
+}
+
+/* --- REPOSITIONNEMENT DES TOOLTIPS --- */
+
+/* Lundi (1) et Mardi (2) -> Alignés à GAUCHE (bulle vers la DROITE) */
+.day-cell.day-index-1[data-tooltip]::before,
+.day-cell.day-index-2[data-tooltip]::before {
+    left: 0;
+    transform: translateX(0);
+}
+
+.day-cell.day-index-1[data-tooltip]::after,
+.day-cell.day-index-2[data-tooltip]::after {
+    left: 20%;
+    transform: translateX(0);
+}
+
+/* Samedi (6) et Dimanche (0) -> Alignés à DROITE (bulle vers la GAUCHE) */
+.day-cell.day-index-6[data-tooltip]::before,
+.day-cell.day-index-0[data-tooltip]::before {
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+}
+
+.day-cell.day-index-6[data-tooltip]::after,
+.day-cell.day-index-0[data-tooltip]::after {
+    left: auto;
+    right: 20%;
+    transform: translateX(0);
+}
+
+/* Ajustement pour le texte dans les cellules colorées */
+.day-cell.day-exception-closed {
+    border-radius: 2px;
+}
+
+/* --- AMÉLIORATIONS DES INPUTS --- */
+input[type="time"] {
+    min-width: 95px;
+}
+
+input[type="date"] {
+    min-width: 125px;
+}
+
+/* --- TOAST NOTIFICATIONS (Alertes flottantes) --- */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast-notification {
+    background-color: var(--color-white);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-md);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    min-width: 300px;
+    max-width: 400px;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all var(--transition-normal);
+    font-family: 'HP Simplified', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.toast-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-notification.hide {
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+.toast-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    color: #6c757d;
+    background-color: rgba(255, 255, 255, 0.85);
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-top-left-radius: calc(var(--radius-md) - 1px);
+    border-top-right-radius: calc(var(--radius-md) - 1px);
+}
+
+.slds-tabs_default>ul.help {
+    list-style: none;
+}
+
+.slds-modal__header .slds-modal__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-left: 0;
+    bottom: 0;
+    color: var(--color-text-dark);
+}
+
+/* --- SKELETON LOADING ANIMATION --- */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    color: transparent;
+    pointer-events: none;
+    user-select: none;
+    border-radius: var(--radius-md);
+    min-height: 1.2em;
+}
+
+.skeleton-text {
+    width: 70%;
+    height: 1em;
+    margin-bottom: 0.5em;
+    display: inline-block;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Validation styles */
+.has-error .slds-input,
+.has-error .slds-select {
+    border-color: #c23934;
+    box-shadow: 0 0 0 1px #c23934;
+}
+
+.has-error .slds-form-element__help {
+    color: #c23934;
+    display: block;
+    margin-top: var(--spacing-xs);
+}
+
+/* Icon box */
+.toast-icon-box {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-md);
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    font-size: 0.8rem;
+}
+
+.toast-header strong {
+    margin-right: auto;
+    font-weight: 600;
+}
+
+.toast-close {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    float: right;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-text-dark);
+    text-shadow: 0 1px 0 var(--color-white);
+    opacity: 0.5;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.toast-close:hover {
+    opacity: 0.75;
+}
+
+.toast-body {
+    padding: 0.75rem;
+    word-wrap: break-word;
+    color: #212529;
+    font-size: 0.9rem;
+}
+
+/* Timer Bar */
+.toast-progress {
+    height: 4px;
+    width: 100%;
+    background-color: #e9ecef;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.toast-progress-bar {
+    height: 100%;
+    width: 100%;
+    transition: width linear;
+}
+
+/* Types */
+.toast-success .toast-icon-box {
+    background-color: var(--color-success);
+}
+
+.toast-success .toast-header strong {
+    color: var(--color-success);
+}
+
+.toast-success .toast-progress-bar {
+    background-color: var(--color-success);
+}
+
+.toast-error .toast-icon-box {
+    background-color: var(--color-error);
+}
+
+.toast-error .toast-header strong {
+    color: var(--color-error);
+}
+
+.toast-error .toast-progress-bar {
+    background-color: var(--color-error);
+}
+
+.toast-info .toast-icon-box {
+    background-color: var(--color-info);
+}
+
+.toast-info .toast-header strong {
+    color: var(--color-info);
+}
+
+.toast-info .toast-progress-bar {
+    background-color: var(--color-info);
+}
+
+/* ERROR HIGHLIGHTING */
+.slds-has-error .slds-input,
+.slds-has-error .slds-select {
+    border-color: var(--color-error-dark);
+    box-shadow: 0 0 4px rgba(234, 0, 30, 0.4);
+    background-color: #fffafa;
+}
+
+.slds-has-error .slds-form-element__label {
+    color: var(--color-error-dark);
+    font-weight: bold;
+}
+
+.slds-has-error .slds-form-element__help {
+    color: var(--color-error-dark);
+    display: block;
+}
+
+/* --- TITRES DE PAGE --- */
+.page-title {
+    font-family: 'Khand', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+/* Sous-titres et descriptions */
+.page-subtitle {
+    font-family: 'HP Simplified', sans-serif;
+}
+
+/* Étiquettes de formulaire */
+.form-label {
+    margin-bottom: 0;
+}
+
+/* --- MODULE CARDS (Cartes des modules DNIS) --- */
+.module-card {
+    transition: all var(--transition-quick);
+    position: relative;
+}
+
+.module-card.drag-over {
+    border: 2px dashed var(--color-primary);
+    background-color: #f3f9ff;
+    transform: scale(1.02);
+}
+
+.module-card:hover .drag-handle {
+    color: var(--color-primary);
+}
+
+.drag-handle:active {
+    cursor: grabbing !important;
+}
+
+/* --- LISTES ET TEXTE --- */
+.steps-sub {
+    margin: 0.5rem 0 !important;
+}
+
+/* Petits textes informatifs */
+.small-text {
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+/* Étiquette pour les champs optionnels */
+.optional-label {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 0.7rem;
+    color: #777;
+}
+
+/* ================================================
+   STYLES DES GUIDES (guide-calendrier.html, guide-dnis.html)
+   ================================================ */
+
+/* Smooth scrolling sur les conteneurs pertinents */
+html {
+    scroll-behavior: smooth;
+}
+
+.content,
+.guide-section {
+    scroll-behavior: smooth;
+}
+
+.content {
+    background: var(--color-white);
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+}
+
+/* Classe de base pour tous les titres du guide */
+.guide-heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+}
+
+/* Titre H1 - Principal */
+.guide-h1 {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    border-bottom: 3px solid var(--color-primary);
+    padding-bottom: var(--spacing-md);
+}
+
+/* Subtitle - Descriptif */
+.subtitle {
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xl);
+    font-style: italic;
+}
+
+/* Titre H2 - Section majeure */
+.guide-h2 {
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--spacing-md);
+}
+
+/* Titre H3 - Sous-section */
+.guide-h3 {
+    color: var(--color-text-medium);
+    font-size: 1.3rem;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Titre H4 - Petit titre */
+.guide-h4 {
+    color: #555;
+    font-size: 1.1rem;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.info-box,
+.warning-box,
+.success-box,
+.example-box {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    border-radius: var(--radius-md);
+    border-left: 5px solid;
+}
+
+.info-box {
+    background-color: #e8f1fb;
+    border-left-color: #0176d3;
+}
+
+.warning-box {
+    background-color: #fdf5f3;
+    border-left-color: #f56044;
+}
+
+.success-box {
+    background-color: #ecf5f0;
+    border-left-color: #04844b;
+}
+
+.example-box {
+    background-color: #f8f9fb;
+    border-left-color: #a8a8a8;
+}
+
+/* Icônes pour les boîtes d'information - Approche via data attributes */
+/* Usage HTML : <strong data-icon="info">Titre</strong> */
+
+[data-icon]::before {
+    display: inline-block;
+    margin-right: var(--spacing-sm);
+    font-weight: bold;
+}
+
+[data-icon="info"]::before {
+    content: "ℹ️";
+}
+
+[data-icon="warning"]::before {
+    content: "⚠️";
+}
+
+[data-icon="success"]::before {
+    content: "✅";
+}
+
+[data-icon="example"]::before {
+    content: "📌";
+}
+
+/* Compatibilité rétro pour les sélecteurs existants */
+.info-box strong::before {
+    content: "ℹ️ ";
+}
+
+.warning-box strong::before {
+    content: "⚠️ ";
+}
+
+.success-box strong::before {
+    content: "✅ ";
+}
+
+.example-box strong::before {
+    content: "📌 ";
+}
+
+.color-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-lighter);
+}
+
+.legend-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.legend-text strong {
+    font-size: 0.95rem;
+}
+
+.legend-text small {
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: var(--spacing-xs);
+}
+
+.priority-box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.priority-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.steps {
+    counter-reset: step-counter;
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-lg) 0;
+}
+
+.steps li {
+    counter-increment: step-counter;
+    margin-bottom: var(--spacing-lg);
+    padding-left: 3rem;
+    position: relative;
+    list-style: none;
+}
+
+.steps li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-lg) 0;
+    font-size: 0.95rem;
+}
+
+.guide-table thead {
+    background-color: #f0f0f0;
+}
+
+.guide-table th {
+    padding: var(--spacing-md);
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #ddd;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.guide-table td {
+    padding: 0.8rem var(--spacing-md);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.guide-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.btn-tag {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: #e0e0e0;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.85rem;
+    margin: 0 var(--spacing-xs);
+    font-family: monospace;
+}
+
+.btn-primary {
+    background: #0176d3;
+    color: var(--color-white);
+}
+
+.guide-section {
+    background: var(--color-white);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--color-primary);
+}
+
+.field-definition {
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid #f3f2f2;
+    padding-bottom: var(--spacing-md);
+}
+
+.field-name {
+    font-weight: bold;
+    color: var(--color-primary);
+    display: block;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Couleurs de légende */
+.color-light-purple {
+    background-color: var(--color-day-open);
+}
+
+.color-dark-purple {
+    background-color: var(--color-day-open-no-wait);
+}
+
+.color-dark-red {
+    background-color: var(--color-day-pre-closed);
+}
+
+.color-dark-gray {
+    background-color: var(--color-day-closed);
+}
+
+.color-orange {
+    background-color: var(--color-day-weekly-closed);
+}
+
+.color-brown {
+    background-color: var(--color-day-exception-closed);
+}
+
+.color-pink {
+    background-color: var(--color-day-holiday-closed);
+}
+
+.color-blue {
+    background-color: var(--color-primary-light);
+}
+
+.guide-title {
+    font-family: 'Khand', sans-serif;
+}
+
+/* Boutons full width */
+.btn-full-width {
+    width: 100%;
+}
+
+/* ================================================
+   STYLES SUPPLÉMENTAIRES POUR LE GUIDE CALENDRIER
+   ================================================ */
+
+/* Note de configuration importante */
+.config-note {
+    background-color: #fff3cd;
+    border-left: 4px solid var(--color-warning);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: var(--radius-md);
+}
+
+.config-note strong {
+    color: #856404;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.config-note p {
+    margin-bottom: 10px;
+    color: var(--color-text-medium);
+}
+
+.config-note ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.config-note li {
+    margin-bottom: 8px;
+    color: var(--color-text-medium);
+}
+
+.config-note .highlight {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.config-note-warning {
+    border-left-color: #c23934;
+}
+
+.warning-title {
+    color: #c23934;
+}
+
+/* Carré de couleur pour la légende */
+.legend-color {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    border: 2px solid #ccc;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Niveau de priorité */
+.priority-level {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: 1.2rem;
+    margin-bottom: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform var(--transition-quick), box-shadow var(--transition-quick);
+}
+
+.priority-level:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.priority-level.color-brown {
+    border-left-color: var(--color-day-exception-closed);
+    border-left-width: 6px;
+}
+
+.priority-level.color-orange {
+    border-left-color: var(--color-day-weekly-closed);
+    border-left-width: 6px;
+}
+
+.priority-level.color-blue {
+    border-left-color: var(--color-primary-light);
+    border-left-width: 6px;
+}
+
+/* Workflow visuel */
+.workflow-step {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+}
+
+.workflow-box {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--color-white);
+    padding: 0.8rem var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+    min-width: 120px;
+    text-align: center;
+}
+
+.workflow-arrow {
+    font-size: 2rem;
+    color: #667eea;
+    font-weight: bold;
+}
+
+/* FAQ Accordéon */
+.faq-item {
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--color-white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow var(--transition-quick);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+    padding: 1.2rem var(--spacing-lg);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #16325c;
+    transition: background var(--transition-quick);
+    user-select: none;
+}
+
+.faq-question:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+}
+
+.faq-question.active {
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+}
+
+.faq-question span:last-child {
+    font-size: 1.2rem;
+    transition: transform var(--transition-normal);
+}
+
+.faq-question.active span:last-child {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal), padding var(--transition-normal);
+    padding: 0 var(--spacing-lg);
+    background: var(--color-white);
+}
+
+.faq-answer.active {
+    max-height: 1000px;
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--color-border-light);
+}
+
+.faq-answer h4 {
+    color: var(--color-primary-light);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.faq-answer ul,
+.faq-answer ol {
+    margin-top: var(--spacing-sm);
+}
+
+/* Bouton de menu stylisé */
+.bouton_menu {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    margin: var(--spacing-xs);
+    box-shadow: 0 2px 6px rgba(1, 118, 211, 0.3);
+    transition: transform var(--transition-quick), box-shadow var(--transition-quick);
+}
+
+.bouton_menu:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(1, 118, 211, 0.4);
+}
+
+/* Petite marge */
+.small-margin {
+    margin: var(--spacing-sm) 0;
+}
+
+/* Footer stylisé */
+footer {
+    margin-top: var(--spacing-xl);
+    margin-bottom: 0;
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-top: 3px solid var(--color-primary-light);
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-medium);
+}
+
+footer p:first-child {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-primary-light);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* ================================================
+   CORRECTION DU MODAL - Suppression espace blanc
+   ================================================ */
+
+/* Suppression du padding du modal content quand il contient un iframe */
+.slds-modal__content:has(iframe) {
+    padding: 0;
+}
+
+/* Alternative si :has() n'est pas supporté - cibler directement le help-text */
+#help-text:has(iframe),
+#modal-content:has(iframe) {
+    padding: 0;
+    margin: 0;
+}
+
+/* Réduction de l'espace entre le modal content et le footer */
+.slds-modal__content {
+    padding-bottom: 0;
+}
+
+.slds-modal__footer {
+    margin-top: 0;
+    padding-top: var(--spacing-md);
+}
+
+/* Styles spécifiques pour le guide en modal/iframe */
+body.slds-scope main {
+    margin: 0;
+    padding: 0;
+}
+
+.slds-p-around_medium {
+    padding: var(--spacing-md);
+}
+
+/* Réduction des marges en bas du guide */
+.guide-h2:last-of-type,
+.faq-item:last-of-type,
+.faq-item:last-child {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Suppression des marges excessives sur les sections de FAQ */
+#faq~.faq-item:last-child,
+.faq-item:nth-last-child(1),
+.faq-item:nth-last-child(2) {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ================================================
+   STYLES SPÉCIFIQUES - PAGE PARAMÉTRAGE PARCOURS
+   ================================================ */
+
+.etape-card {
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 12px;
+    background: #f3f3f3;
+}
+
+.etape-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #3e3e3c;
+}
+
+.etape-card-header .etape-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #1b5297;
+}
+
+.critere-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.critere-row input {
+    flex: 1;
+}
+
+.detail-etapes-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+.detail-etapes-table th {
+    background: #f3f3f3;
+    padding: 6px 10px;
+    text-align: left;
+    border-bottom: 2px solid #dddbda;
+    font-weight: 700;
+}
+
+.detail-etapes-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+}
+
+.detail-etapes-table tr:last-child td {
+    border-bottom: none;
+}
+
+.badge-type {
+    background: #1b5297;
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+}
+
+.badge-mode-elargissement {
+    background: #2e844a;
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+}
+
+.badge-mode-debordement {
+    background: #c23934;
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+}
+
+/* Séparateur guides individuels */
+.guides-separator {
+    display: flex;
+    align-items: center;
+    margin: 4px 0 8px 0;
+    color: #706e6b;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.guides-separator::before,
+.guides-separator::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #dddbda;
+}
+
+.guides-separator-label {
+    padding: 0 10px;
+}
+
+/* Guides MER multi-select rows */
+.guide-mer-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.guide-mer-select-wrapper {
+    flex: 1;
+}
+
+.guide-mer-remove-btn {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c23934;
+    border: 1px solid #c23934;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.guide-mer-remove-btn:hover {
+    background: #c23934;
+    color: #fff;
+}
+
+/* STYLES SPÉCIFIQUES - PAGE GESTION DES GUIDES */
+
+/* Badges de type pour chaque guide */
+.guide-badge {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.guide-dis {
+    background: #c23934;
+    color: #fff;
+}
+
+.guide-att {
+    background: #1b5297;
+    color: #fff;
+}
+
+.guide-mer {
+    background: #2e844a;
+    color: #fff;
+}
+
+.guide-badge:empty {
+    background: #ecebea;
+    color: #706e6b;
+}
+
+.select-search-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.select-search-input {
+    font-size: 0.8125rem;
+}
+
+.guides-legend {
+    background-color: #f3f3f3;
+    border: 1px solid #d8dde6;
+    border-radius: 4px;
+}
+
+.guides-legend .guide-badge {
+    vertical-align: middle;
+}
+
+.shadow-ltr {
+    /*box-shadow: 1px 1px 0px #555 !important;*/
+    border-left: 1px solid #d3d2d2;
+    border-top: 1px solid #d3d2d2;
+    border-right: 1px solid #d3d2d2;
+}
+
+.shadow-lr {
+    border-left: 1px solid #d3d2d2;
+    border-right: 1px solid #d3d2d2;
+}
+
+.shadow-lbr {
+    border-left: 1px solid #d3d2d2;
+    border-right: 1px solid #d3d2d2;
+    border-bottom: 1px solid #d3d2d2;
+}
+
+/* ================================================
+   DRAG AND DROP - Modules (DNIS & Segments)
+   ================================================ */
+
+/* Poignée de déplacement */
+.drag-handle {
+    font-size: 1.1rem;
+    cursor: grab;
+    color: #ccc;
+    padding: 0 4px;
+    user-select: none;
+    transition: color 0.15s ease;
+}
+
+.drag-handle:hover {
+    color: #706e6b;
+}
+
+/* Ligne de module en cours de glissement */
+.module-row[draggable="true"],
+.module-card[draggable="true"] {
+    cursor: grab;
+    transition: opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Zone cible de dépôt active */
+.module-row.drag-over,
+.module-card.drag-over {
+    border: 2px dashed #0176d3 !important;
+    background-color: #e8f4fe !important;
+    border-radius: 4px;
+}

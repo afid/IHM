@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IHM - Paramétrage des Parcours</title>
+
+    <!-- Salesforce Lightning Design System (SLDS) CSS -->
+    <link rel="stylesheet" href="css/salesforce-lightning-design-system.min.css">
+
+    <!-- Custom CSS for Local Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <!-- Auth Guard - Must be first script -->
+    <script src="js/auth-guard.js"></script>
+</head>
+
+<body class="slds-scope">
+    <div id="layout-header"></div>
+
+    <div class="app-container">
+        <!-- Sidebar Placeholder -->
+        <div id="layout-sidebar"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="slds-p-around_medium">
+                <!-- Page Header -->
+                <div class="slds-page-header slds-m-bottom_medium">
+                    <div class="slds-page-header__row">
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container">
+                                        🛤️
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1 class="page-title">
+                                                PARAMÉTRAGE DES PARCOURS
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <p class="slds-page-header__name-meta page-subtitle">Gérer
+                                        les parcours de ciblage et leurs étapes</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-page-header__col-actions">
+                            <button id="help-icon-btn" class="help-btn" title="Aide">❓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <!-- Selection Card -->
+                    <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span class="slds-text-heading_small">Gérer les Parcours</span>
+                                        </h2>
+                                    </div>
+                                </header>
+                                <div class="slds-no-flex">
+                                    <button id="new-parcours-btn" class="slds-button slds-button_brand"
+                                        title="Créer un nouveau parcours">
+                                        <span class="slds-m-right_xx-small">➕</span> Nouveau Parcours
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-form-element">
+                                    <div class="slds-m-bottom_x-small">
+                                        <label
+                                            class="slds-form-element__label slds-m-bottom_none slds-m-right_none form-label"
+                                            for="parcours-select">Choisissez un parcours dans la liste
+                                            pour l'éditer</label>
+                                    </div>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                            <div class="slds-col slds-grow">
+                                                <div class="slds-select_container">
+                                                    <select class="slds-select" id="parcours-select">
+                                                        <option value="">Chargement...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div id="edit-parcours-container"
+                                                class="slds-col slds-grow-none slds-m-left_small slds-hide">
+                                                <button id="edit-parcours-btn" class="slds-button slds-button_neutral"
+                                                    title="Editer le parcours sélectionné">
+                                                    <span class="slds-m-right_xx-small">✏️</span> Éditer
+                                                </button>
+                                                <button id="duplicate-parcours-btn"
+                                                    class="slds-button slds-button_neutral slds-m-left_x-small"
+                                                    title="Dupliquer ce parcours pour en créer un nouveau">
+                                                    <span class="slds-m-right_xx-small">📄</span> Dupliquer
+                                                </button>
+                                                <button id="delete-parcours-btn"
+                                                    class="slds-button slds-button_destructive slds-m-left_x-small"
+                                                    title="Supprimer le parcours sélectionné">
+                                                    <span class="slds-m-right_xx-small">🗑️</span> Supprimer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Parcours Details Card (visible after selection) -->
+                    <div id="parcours-details-container"
+                        class="slds-col slds-size_1-of-1 slds-m-bottom_medium slds-hide">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span class="slds-text-heading_small">Détails du Parcours : <span
+                                                    id="detail-parcours-name"></span></span>
+                                        </h2>
+                                    </div>
+                                </header>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div id="parcours-details-content" class="slds-grid slds-wrap slds-gutters_small">
+                                    <!-- Details will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1550.0.min.js"></script>
+    <script src="js/aws-config.js"></script>
+    <script src="news/news.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dynamodb-service.js"></script>
+    <script src="js/connect-service.js"></script>
+    <script src="js/parcours-manager.js"></script>
+
+    <!-- Editor Modal -->
+    <section id="parcours-editor-modal" role="dialog" tabindex="-1" aria-modal="true"
+        class="slds-modal slds-modal_large">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button id="close-editor-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+                    <span id="editor-title">Nouveau Parcours</span>
+                </h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-parcours">
+                <div class="slds-grid slds-wrap slds-gutters_small">
+
+                    <!-- Parcours Name -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-parcours-name">
+                                <abbr class="slds-required" title="required">*</abbr> Nom du Parcours
+                            </label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="editor-parcours-name" class="slds-input"
+                                    placeholder="PARCOURS_STANDARD" required>
+                            </div>
+                            <div class="slds-form-element__help">Nom du parcours</div>
+                        </div>
+                    </div>
+
+                    <!-- Action -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-action">Action</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="editor-action" class="slds-select">
+                                        <option value="">-- Aucune --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__help">Action associée à ce parcours</div>
+                        </div>
+                    </div>
+
+                    <!-- DureeAttenteMax -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-duree-attente-max">Durée d'attente max
+                                (secondes)</label>
+                            <div class="slds-form-element__control">
+                                <input type="number" id="editor-duree-attente-max" class="slds-input" min="0"
+                                    placeholder="600">
+                            </div>
+                            <div class="slds-form-element__help">Durée maximale d'attente en secondes</div>
+                        </div>
+                    </div>
+
+                    <!-- Queue -->
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-queue">Queue</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="editor-queue" class="slds-input" placeholder="Ex: Queue_ESA">
+                            </div>
+                            <div class="slds-form-element__help">Nom de la file d'attente</div>
+                        </div>
+                    </div>
+
+                    <!-- Groupement de Guides Vocaux -->
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-groupement-guides">
+                                🎯 Groupement de Guides Vocaux
+                            </label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="editor-groupement-guides" class="slds-select">
+                                        <option value="">-- Sélectionner un groupement (optionnel) --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__help">
+                                Choisissez un groupement pour pré-remplir automatiquement les guides ci-dessous, ou
+                                laissez vide pour les saisir individuellement.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Séparateur guides individuels -->
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="guides-separator">
+                            <span class="guides-separator-label">Guides individuels</span>
+                        </div>
+                    </div>
+
+                    <!-- Guide Dissuasion -->
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-guide-dissuasion">Guide Dissuasion
+                                (_DIS_)</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="editor-guide-dissuasion" class="slds-select">
+                                        <option value="">-- Aucun --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__help">Guide vocal de type Dissuasion</div>
+                        </div>
+                    </div>
+
+                    <!-- Guides Attente -->
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-guides-attente">Guides Attente
+                                (_ATT_)</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="editor-guides-attente" class="slds-select">
+                                        <option value="">-- Aucun --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__help">Guide vocal de type Attente</div>
+                        </div>
+                    </div>
+
+                    <!-- Guides Mise en Relation (multi) -->
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Guides Mise en Relation (_MER_)</label>
+                            <div id="editor-guides-mer-container">
+                                <!-- Les lignes de guides MER seront ajoutées ici dynamiquement -->
+                            </div>
+                            <button id="add-guide-mer-btn" class="slds-button slds-button_neutral slds-m-top_xx-small"
+                                type="button" title="Ajouter un guide MER">
+                                <span class="slds-m-right_xx-small">➕</span> Ajouter
+                            </button>
+                            <div class="slds-form-element__help">Guides vocaux de type Mise en Relation</div>
+                        </div>
+                    </div>
+
+                    <!-- Etapes -->
+                    <div class="slds-col slds-size_1-of-1 slds-m-top_small">
+                        <div class="slds-form-element slds-m-bottom_small">
+                            <label class="slds-form-element__label slds-text-heading_small">Étapes de ciblage</label>
+                            <div class="slds-form-element__help slds-m-bottom_small">
+                                Définissez les étapes du parcours dans l'ordre. Chaque étape est exécutée
+                                séquentiellement.
+                            </div>
+
+                            <!-- Etapes container -->
+                            <div id="etapes-container" class="slds-m-bottom_small">
+                                <!-- Les étapes seront ajoutées ici dynamiquement -->
+                            </div>
+
+                            <button id="add-etape-btn" class="slds-button slds-button_brand" type="button">
+                                <span class="slds-m-right_xx-small">➕</span> Ajouter une Étape
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <footer class="slds-modal__footer">
+                    <button id="cancel-editor-btn" class="slds-button slds-button_neutral">Annuler</button>
+                    <button id="save-parcours-btn" class="slds-button slds-button_brand">Sauvegarder</button>
+                </footer>
+            </div>
+        </div>
+    </section>
+    <div id="editor-backdrop" class="slds-backdrop"></div>
+
+    <!-- Confirmation Modal -->
+    <section id="confirmation-modal" role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-modal_small">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header slds-theme_error slds-theme_alert-texture">
+                <button id="close-confirm-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate" id="confirm-modal-title">Confirmation</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="confirm-modal-content">
+                <p id="confirm-modal-message">Êtes-vous sûr ?</p>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-confirm-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="ok-confirm-btn" class="slds-button slds-button_destructive">Confirmer</button>
+            </footer>
+        </div>
+    </section>
+    <div id="confirmation-backdrop" class="slds-backdrop"></div>
+
+
+</body>
+
+</html>

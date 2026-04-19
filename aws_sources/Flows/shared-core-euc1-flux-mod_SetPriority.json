@@ -1,0 +1,92 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "1b17ecea-1b56-4dd9-b121-04df2609ffd7",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 40,
+      "y": 40
+    },
+    "ActionMetadata": {
+      "1b17ecea-1b56-4dd9-b121-04df2609ffd7": {
+        "position": {
+          "x": 377.6,
+          "y": 149.6
+        },
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "Core_Lbd_SetPriority"
+          }
+        },
+        "dynamicMetadata": {}
+      },
+      "c02d60f2-aed0-49c6-a6e6-d8ea6ec8e9cd": {
+        "position": {
+          "x": 656,
+          "y": 226.4
+        }
+      }
+    },
+    "Annotations": [],
+    "name": "shared-core-euc1-flux-mod_SetPriority",
+    "description": "",
+    "status": "published",
+    "settings": {
+      "input": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:eu-central-1:167497311447:function:Core_Lbd_SetPriority",
+        "InvocationTimeLimitSeconds": "3",
+        "InvocationType": "SYNCHRONOUS",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "1b17ecea-1b56-4dd9-b121-04df2609ffd7",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "c02d60f2-aed0-49c6-a6e6-d8ea6ec8e9cd",
+        "Errors": [
+          {
+            "NextAction": "c02d60f2-aed0-49c6-a6e6-d8ea6ec8e9cd",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "c02d60f2-aed0-49c6-a6e6-d8ea6ec8e9cd",
+      "Type": "EndFlowModuleExecution",
+      "Transitions": {}
+    }
+  ],
+  "Settings": {
+    "InputParameters": [],
+    "OutputParameters": [],
+    "Transitions": [
+      {
+        "DisplayName": "Success",
+        "ReferenceName": "Success",
+        "Description": ""
+      },
+      {
+        "DisplayName": "Error",
+        "ReferenceName": "Error",
+        "Description": ""
+      }
+    ]
+  }
+}

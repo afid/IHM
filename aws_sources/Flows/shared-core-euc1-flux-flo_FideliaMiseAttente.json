@@ -1,0 +1,133 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "179eaab1-0c44-419b-a426-b5f2b30614c1",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 40,
+      "y": 40
+    },
+    "ActionMetadata": {
+      "0648d51c-6386-4ffa-8b97-cf4155286324": {
+        "position": {
+          "x": 752.8,
+          "y": 6.4
+        }
+      },
+      "2c17f346-fe55-4824-8cc6-095c1f108670": {
+        "position": {
+          "x": 752.8,
+          "y": 266.4
+        }
+      },
+      "ca2294a2-3497-4a97-bd25-ff006e5d5c5d": {
+        "position": {
+          "x": 472.8,
+          "y": 6.4
+        },
+        "parameters": {
+          "PromptId": {
+            "useDynamic": true
+          }
+        },
+        "useDynamic": true
+      },
+      "179eaab1-0c44-419b-a426-b5f2b30614c1": {
+        "position": {
+          "x": 190.4,
+          "y": 6.4
+        },
+        "parameters": {
+          "Messages": [
+            {
+              "PromptId": {
+                "displayName": "FIDELIA_MMA_ATT_ATT2"
+              }
+            }
+          ],
+          "InterruptFrequencySeconds": {
+            "unit": 60
+          }
+        },
+        "audio": [
+          {
+            "id": "arn:aws:connect:eu-central-1:167497311447:instance/0f3658fc-4902-45ad-9575-1baf3529f440/prompt/eb165f6f-bbc9-42df-aa1b-56d46661d383",
+            "text": "FIDELIA_MMA_ATT_ATT2",
+            "type": "Prompt"
+          }
+        ],
+        "timeoutUnit": {
+          "value": "min"
+        }
+      }
+    },
+    "Annotations": [],
+    "name": "shared-core-euc1-flux-flo_FideliaMiseAttente",
+    "description": "",
+    "type": "customerQueue",
+    "status": "PUBLISHED",
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {},
+      "Identifier": "0648d51c-6386-4ffa-8b97-cf4155286324",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {},
+      "Identifier": "2c17f346-fe55-4824-8cc6-095c1f108670",
+      "Type": "EndFlowExecution",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "PromptId": "$.Attributes.GuideDissuasion"
+      },
+      "Identifier": "ca2294a2-3497-4a97-bd25-ff006e5d5c5d",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "0648d51c-6386-4ffa-8b97-cf4155286324",
+        "Errors": [
+          {
+            "NextAction": "0648d51c-6386-4ffa-8b97-cf4155286324",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Messages": [
+          {
+            "PromptId": "arn:aws:connect:eu-central-1:167497311447:instance/0f3658fc-4902-45ad-9575-1baf3529f440/prompt/eb165f6f-bbc9-42df-aa1b-56d46661d383"
+          }
+        ],
+        "InterruptFrequencySeconds": "600",
+        "ContinueMessagingDuringInterrupt": "false"
+      },
+      "Identifier": "179eaab1-0c44-419b-a426-b5f2b30614c1",
+      "Type": "MessageParticipantIteratively",
+      "Transitions": {
+        "NextAction": "2c17f346-fe55-4824-8cc6-095c1f108670",
+        "Conditions": [
+          {
+            "NextAction": "ca2294a2-3497-4a97-bd25-ff006e5d5c5d",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "MessagesInterrupted"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "2c17f346-fe55-4824-8cc6-095c1f108670",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ]
+}

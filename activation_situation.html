@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IHM - Activer une Situation</title>
+
+    <!-- Salesforce Lightning Design System (SLDS) CSS -->
+    <link rel="stylesheet" href="css/salesforce-lightning-design-system.min.css">
+
+    <!-- Custom CSS for Local Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <!-- Auth Guard - Must be first script -->
+    <script src="js/auth-guard.js"></script>
+</head>
+
+<body class="slds-scope">
+    <div id="layout-header"></div>
+
+    <div class="app-container">
+        <!-- Sidebar Placeholder -->
+        <div id="layout-sidebar"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="slds-p-around_medium">
+                <!-- Page Header -->
+                <div class="slds-page-header slds-m-bottom_medium">
+                    <div class="slds-page-header__row">
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container">
+                                        ⚡
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1 class="page-title">
+                                                ACTIVER UNE SITUATION
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <p class="slds-page-header__name-meta page-subtitle">Affecter des situations aux
+                                        Marques/Domaines/Sous-domaines</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-page-header__col-actions">
+                            <button id="help-icon-btn" class="help-btn" title="Aide">❓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <!-- Selection Card -->
+                    <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span class="slds-text-heading_small">Sélectionner une
+                                                Marque/Domaine/Sous-domaine</span>
+                                        </h2>
+                                    </div>
+                                </header>
+                                <div class="slds-no-flex">
+                                    <button id="new-structure-btn" class="slds-button slds-button_brand">
+                                        <span class="slds-m-right_xx-small">➕</span> Nouvelle
+                                        Marque/Domaine/Sous-domaine
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-grid slds-gutters slds-wrap">
+                                    <!-- Marque Filter -->
+                                    <div
+                                        class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_x-small">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="marque-select">Marque</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <select class="slds-select" id="marque-select">
+                                                        <option value="">Chargement...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Domaine Filter -->
+                                    <div id="domaine-filter-container"
+                                        class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_x-small slds-hide">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="domaine-select">Domaine</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <select class="slds-select" id="domaine-select">
+                                                        <option value="">Sélectionner un domaine...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Sous-domaine Filter -->
+                                    <div id="sous-domaine-filter-container"
+                                        class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_x-small slds-hide">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label"
+                                                for="sous-domaine-select">Sous-domaine</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <select class="slds-select" id="sous-domaine-select">
+                                                        <option value="">Sélectionner un sous-domaine...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Structure Details Area -->
+                    <div id="structure-details-container"
+                        class="slds-col slds-size_1-of-1 slds-m-bottom_medium slds-hide">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span class="slds-text-heading_small">Détails de la
+                                                Marque/Domaine/Sous-domaine : <span
+                                                    id="detail-structure-name"></span></span>
+                                        </h2>
+                                    </div>
+                                </header>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div id="structure-details-content" class="slds-grid slds-wrap slds-gutters_small">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Activation Modal (Edition) -->
+    <section id="activation-modal" role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-modal_large">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button id="close-modal-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate" id="modal-title">Éditer l'Activation</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <div class="slds-grid slds-wrap slds-gutters_small">
+                    <!-- Structure Name (ReadOnly) -->
+                    <div class="slds-col slds-size_1-of-2 slds-m-bottom_medium">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Marque/Domaine/Sous-domaine</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="editor-structure-name" class="slds-input" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fermeture d'urgence Switch -->
+                    <div class="slds-col slds-size_1-of-2 slds-m-bottom_medium">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-etat-toggle">Fermeture d'urgence</label>
+                            <div class="slds-form-element__control">
+                                <label class="slds-checkbox_toggle slds-grid">
+                                    <input type="checkbox" id="editor-etat-toggle" aria-describedby="editor-etat-toggle"
+                                        value="Fermeture d'urgence" />
+                                    <span id="editor-etat-toggle-desc" class="slds-checkbox_faux_container"
+                                        aria-live="assertive">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-checkbox_on">Activé</span>
+                                        <span class="slds-checkbox_off">Désactivé</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Situations Selection -->
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-section slds-is-open">
+                            <h3 class="slds-section__title slds-theme_shade">
+                                <span class="slds-truncate slds-p-horizontal_small">Situations de la
+                                    Marque/Domaine/Sous-domaine</span>
+                            </h3>
+                            <div class="slds-section__content slds-p-around_small slds-border_around">
+                                <div
+                                    class="slds-grid slds-gutters_small slds-grid_vertical-align-end slds-m-bottom_medium">
+                                    <div class="slds-col slds-size_2-of-3">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="situation-select">Ajouter une
+                                                situation prédéfinie</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <select id="situation-select" class="slds-select">
+                                                        <option value="">Chargement des situations...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-3">
+                                        <button id="add-situation-to-struct-btn"
+                                            class="slds-button slds-button_brand slds-button_stretch">
+                                            Ajouter la situation
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Situation Recap Area -->
+                                <div id="situation-recap-container" class="slds-m-bottom_medium slds-hide">
+                                    <div class="slds-box slds-theme_info slds-theme_alert-texture">
+                                        <h4 class="slds-text-heading_small slds-m-bottom_x-small">Récapitulatif de la
+                                            situation : <span id="recap-name"></span></h4>
+                                        <div id="recap-content"></div>
+                                    </div>
+                                </div>
+
+                                <div id="active-situations-list">
+                                    <!-- List of active situations for this structure -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-modal-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="save-activation-btn" class="slds-button slds-button_brand">Sauvegarder les
+                    modifications</button>
+            </footer>
+        </div>
+    </section>
+    <div id="modal-backdrop" class="slds-backdrop"></div>
+
+    <!-- Periods Editor Modal -->
+    <section id="periods-editor-modal" role="dialog" tabindex="-1" aria-modal="true"
+        class="slds-modal slds-modal_small">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header shadow-ltr">
+                <button id="close-periods-modal-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate">Gérer les Périodes : <span
+                        id="periods-modal-sit-name"></span></h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium shadow-lr">
+                <div class="slds-grid slds-gutters_small slds-wrap">
+                    <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="edit-period-start-date">Date de début</label>
+                            <div class="slds-form-element__control">
+                                <input type="date" id="edit-period-start-date" class="slds-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="edit-period-start-time">Heure de début</label>
+                            <div class="slds-form-element__control">
+                                <input type="time" id="edit-period-start-time" class="slds-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="edit-period-end-date">Date de fin</label>
+                            <div class="slds-form-element__control">
+                                <input type="date" id="edit-period-end-date" class="slds-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="edit-period-end-time">Heure de fin</label>
+                            <div class="slds-form-element__control">
+                                <input type="time" id="edit-period-end-time" class="slds-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="slds-modal__footer slds-grid slds-grid_align-spread shadow-lbr">
+                <button id="clear-periods-btn" class="slds-button slds-button_destructive">Vider la période</button>
+                <div>
+                    <button id="cancel-periods-modal-btn" class="slds-button slds-button_neutral">Annuler</button>
+                    <button id="save-periods-btn" class="slds-button slds-button_brand">Appliquer les périodes</button>
+                </div>
+            </footer>
+        </div>
+    </section>
+    <div id="periods-modal-backdrop" class="slds-backdrop"></div>
+
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1550.0.min.js"></script>
+    <script src="js/aws-config.js"></script>
+    <script src="news/news.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dynamodb-service.js"></script>
+    <script src="js/activation-manager.js"></script>
+</body>
+
+</html>

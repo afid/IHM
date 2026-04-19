@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Salesforce Style IHM</title>
+
+    <!-- Salesforce Lightning Design System (SLDS) CSS -->
+    <link rel="stylesheet"
+        href="css/salesforce-lightning-design-system.min.css">
+
+    <!-- Custom CSS for Local Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <!-- Auth Guard - Must be first script -->
+    <script src="js/auth-guard.js"></script>
+</head>
+
+<body class="slds-scope">
+    <!--
+        ZONES DE MISE EN PAGE :
+        Comme sur les autres pages, ces zones vides seront remplies par le script 'layout.js'.
+        Cela assure que le menu et l'en-tête sont identiques partout.
+    -->
+    <div id="layout-header"></div>
+
+    <div class="app-container">
+        <!-- Sidebar Placeholder -->
+        <div id="layout-sidebar"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div id="brand-content-container" class="slds-p-around_medium">
+                <!-- Landing Page -->
+                <div class="slds-page-header slds-m-bottom_medium">
+                    <div class="slds-page-header__row">
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container">
+                                        🏠
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <!-- TITRE PRINCIPAL DE L'ACCUEIL -->
+                                            <h1 class="page-title">
+                                                Bienvenue sur le portail d'administration des Flows
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <p class="slds-page-header__name-meta page-subtitle">
+                                        Sélectionnez une action dans le menu latéral pour accéder à son tableau de bord
+                                        dédié.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Help Icon -->
+                        <div class="slds-page-header__col-actions">
+                            <button id="help-icon-btn" class="help-btn" title="Aide">❓</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!--
+        SCRIPTS :
+        - news.js : Gestion du bandeau d'actualités.
+        - layout.js : Construction de la page (menu, en-tête).
+        - script.js : Logique générale et déconnexion.
+    -->
+    <script src="news/news.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

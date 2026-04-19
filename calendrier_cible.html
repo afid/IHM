@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IHM - Calendrier Cible</title>
+
+    <!-- Salesforce Lightning Design System (SLDS) CSS -->
+    <link rel="stylesheet"
+        href="css/salesforce-lightning-design-system.min.css">
+
+    <!-- Custom CSS for Local Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <!-- Auth Guard - Must be first script -->
+    <script src="js/auth-guard.js"></script>
+</head>
+
+<body class="slds-scope" data-module="cible">
+    <!--
+        ZONES DE MISE EN PAGE (Layout) :
+        Ces balises <div> vides servent de réceptacles.
+        Le fichier javascript 'js/layout.js' va automatiquement y insérer :
+        1. L'en-tête de la page (header)
+        2. Le menu latéral de navigation (sidebar)
+        Cela permet de ne pas répéter ce code sur toutes les pages.
+    -->
+    <div id="layout-header"></div>
+
+    <div class="app-container">
+        <!-- Sidebar Placeholder -->
+        <div id="layout-sidebar"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="slds-p-around_medium">
+                <!--
+                    EN-TÊTE DE LA PAGE (Header) :
+                    Affiche le titre "CALENDRIER CIBLE", l'icône, et le bouton d'aide.
+                -->
+                <div class="slds-page-header slds-m-bottom_medium">
+                    <div class="slds-page-header__row">
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container">
+                                        🎯
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1 class="page-title">
+                                                CALENDRIER CIBLE
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <p class="slds-page-header__name-meta page-subtitle">Gérer
+                                        vos calendriers cibles</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BOUTON D'AIDE -->
+                        <div class="slds-page-header__col-actions">
+                            <button id="help-icon-btn" class="help-btn" title="Aide">❓</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span class="slds-text-heading_small">Éditer ou Ajouter un calendrier
+                                                cible</span>
+                                        </h2>
+                                    </div>
+                                </header>
+                                <div class="slds-no-flex">
+                                    <button id="new-calendar-btn" class="slds-button slds-button_brand"
+                                        title="Créer un nouveau calendrier">
+                                        <span class="slds-m-right_xx-small">📆</span> Nouveau calendrier
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-form-element">
+                                    <div class="slds-m-bottom_x-small">
+                                        <label class="slds-form-element__label slds-m-bottom_none slds-m-right_none form-label"
+                                            for="calendar-select">Choisissez un calendrier
+                                            dans la liste pour l'éditer</label>
+                                    </div>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                            <div class="slds-col slds-grow">
+                                                <div class="slds-select_container">
+                                                    <select class="slds-select" id="calendar-select"
+                                                        class="font-hp">
+                                                        <option value="">Chargement...</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div id="edit-calendar-container"
+                                                class="slds-col slds-grow-none slds-m-left_small slds-hide">
+                                                <button id="edit-calendar-btn" class="slds-button slds-button_neutral"
+                                                    title="Editer le calendrier sélectionné">
+                                                    <span class="slds-m-right_xx-small">✏️</span> Editer
+                                                </button>
+                                                <button id="duplicate-calendar-btn"
+                                                    class="slds-button slds-button_neutral slds-m-left_x-small"
+                                                    title="Dupliquer le calendrier sélectionné">
+                                                    <span class="slds-m-right_xx-small">📋</span> Dupliquer
+                                                </button>
+                                                <button id="delete-calendar-btn"
+                                                    class="slds-button slds-button_destructive slds-m-left_x-small"
+                                                    title="Supprimer le calendrier sélectionné">
+                                                    <span class="slds-m-right_xx-small">🗑️</span> Supprimer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </article>
+                    </div>
+
+                    <div id="annual-calendar-container"
+                        class="slds-col slds-size_1-of-1 slds-m-bottom_medium slds-hide">
+                        <article class="slds-card">
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1550.0.min.js"></script>
+    <script src="js/aws-config.js"></script>
+    <script src="js/calendars-data.js"></script>
+    <script src="news/news.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dynamodb-service.js"></script>
+    <script src="js/calendar-editor.js"></script>
+
+    <section id="calendar-editor-modal" role="dialog" tabindex="-1" aria-modal="true"
+        class="slds-modal slds-modal_large">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button id="close-editor-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Éditeur de Calendrier Cible
+                    : <span id="editor-calendar-name"></span></h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-name">Nom du calendrier</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="editor-name" class="slds-input"
+                                    placeholder="Libellé du calendrier">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="editor-timezone">Time Zone</label>
+                            <div class="slds-form-element__control">
+                                <select id="editor-timezone" class="slds-select">
+                                    <optgroup label="Métropole">
+                                        <option value="Europe/Paris">Europe/Paris (UTC+1/+2)</option>
+                                    </optgroup>
+                                    <optgroup label="Outre-Mer (DROM-COM)">
+                                        <option value="America/Guadeloupe">Guadeloupe/Martinique/St-Martin (UTC-4)
+                                        </option>
+                                        <option value="America/Cayenne">Guyane (UTC-3)</option>
+                                        <option value="Indian/Reunion">La Réunion (UTC+4)</option>
+                                        <option value="Indian/Mayotte">Mayotte (UTC+3)</option>
+                                        <option value="Pacific/Noumea">Nouvelle-Calédonie (UTC+11)</option>
+                                        <option value="Pacific/Tahiti">Polynésie Française (Tahiti) (UTC-10)</option>
+                                        <option value="America/Miquelon">Saint-Pierre-et-Miquelon (UTC-3)</option>
+                                        <option value="Pacific/Wallis">Wallis-et-Futuna (UTC+12)</option>
+                                    </optgroup>
+                                    <optgroup label="International">
+                                        <option value="Europe/London">Europe/London (UTC+0/+1)</option>
+                                        <option value="America/New_York">America/New_York (UTC-5/-4)</option>
+                                        <option value="America/Los_Angeles">America/Los_Angeles (UTC-8/-7)</option>
+                                        <option value="Asia/Tokyo">Asia/Tokyo (UTC+9)</option>
+                                        <option value="UTC">UTC</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-tabs_default">
+                    <ul class="slds-tabs_default__nav" role="tablist">
+                        <li class="slds-tabs_default__item slds-is-active" title="Semaine Type" role="presentation">
+                            <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0"
+                                aria-selected="true" aria-controls="tab-default-1" id="tab-weekly-link">Semaine Type</a>
+                        </li>
+                        <li class="slds-tabs_default__item" title="Jours Exceptionnels" role="presentation">
+                            <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1"
+                                aria-selected="false" aria-controls="tab-default-3" id="tab-exception-link">Jours
+                                Exceptionnels</a>
+                        </li>
+                    </ul>
+                    <div id="tab-default-1" class="slds-tabs_default__content slds-show" role="tabpanel"
+                        aria-labelledby="tab-weekly-link">
+                        <div id="weekly-editor-content"></div>
+                    </div>
+                    <div id="tab-default-3" class="slds-tabs_default__content slds-hide" role="tabpanel"
+                        aria-labelledby="tab-exception-link">
+                        <div class="slds-m-bottom_small">
+                            <button id="add-exception-btn" class="slds-button slds-button_brand">➕ Ajouter un jour
+                                exceptionnel</button>
+                        </div>
+                        <div id="exception-editor-content"></div>
+                    </div>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-editor-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="save-calendar-btn" class="slds-button slds-button_brand">Sauvegarder</button>
+            </footer>
+        </div>
+    </section>
+    <div id="editor-backdrop" class="slds-backdrop"></div>
+
+    <section id="create-modal" role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-modal_medium">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button id="close-create-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate">Nouveau Calendrier Cible</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <div class="slds-form-element slds-m-bottom_small">
+                    <label class="slds-form-element__label" for="create-id">
+                        <abbr class="slds-required" title="required">*</abbr> ID du calendrier
+                    </label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="create-id" class="slds-input" placeholder="ex: CIBLE_NORD" required>
+                    </div>
+                    <div class="slds-form-element__help">Identifiant unique (sans espaces, majuscules conseillées).
+                    </div>
+                </div>
+                <div class="slds-form-element slds-m-bottom_small">
+                    <label class="slds-form-element__label" for="create-name">Nom du calendrier</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="create-name" class="slds-input"
+                            placeholder="ex: Calendrier Cible Secteur Nord">
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="create-timezone">Time Zone</label>
+                    <div class="slds-form-element__control">
+                        <select id="create-timezone" class="slds-select">
+                            <optgroup label="Métropole">
+                                <option value="Europe/Paris" selected>Europe/Paris (UTC+1/+2)</option>
+                            </optgroup>
+                            <optgroup label="Outre-Mer (DROM-COM)">
+                                <option value="America/Guadeloupe">Guadeloupe/Martinique/St-Martin (UTC-4)</option>
+                                <option value="America/Cayenne">Guyane (UTC-3)</option>
+                                <option value="Indian/Reunion">La Réunion (UTC+4)</option>
+                                <option value="Indian/Mayotte">Mayotte (UTC+3)</option>
+                                <option value="Pacific/Noumea">Nouvelle-Calédonie (UTC+11)</option>
+                                <option value="Pacific/Tahiti">Polynésie Française (Tahiti) (UTC-10)</option>
+                                <option value="America/Miquelon">Saint-Pierre-et-Miquelon (UTC-3)</option>
+                                <option value="Pacific/Wallis">Wallis-et-Futuna (UTC+12)</option>
+                            </optgroup>
+                            <optgroup label="International">
+                                <option value="Europe/London">Europe/London (UTC+0/+1)</option>
+                                <option value="America/New_York">America/New_York (UTC-5/-4)</option>
+                                <option value="America/Los_Angeles">America/Los_Angeles (UTC-8/-7)</option>
+                                <option value="Asia/Tokyo">Asia/Tokyo (UTC+9)</option>
+                                <option value="UTC">UTC</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-create-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="confirm-create-btn" class="slds-button slds-button_brand">Créer</button>
+            </footer>
+        </div>
+    </section>
+    <div id="create-backdrop" class="slds-backdrop"></div>
+
+    <section id="duplicate-modal" role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-modal_medium">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button id="close-duplicate-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate">Dupliquer le calendrier cible</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <div class="slds-form-element slds-m-bottom_small">
+                    <label class="slds-form-element__label" for="duplicate-id">
+                        <abbr class="slds-required" title="required">*</abbr> ID du nouveau calendrier
+                    </label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="duplicate-id" class="slds-input" placeholder="ex: CIBLE_SUD" required>
+                    </div>
+                </div>
+                <div class="slds-form-element slds-m-bottom_small">
+                    <label class="slds-form-element__label" for="duplicate-name">Nom du calendrier</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="duplicate-name" class="slds-input"
+                            placeholder="ex: Calendrier Cible Secteur Sud">
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="duplicate-timezone">Time Zone</label>
+                    <div class="slds-form-element__control">
+                        <select id="duplicate-timezone" class="slds-select">
+                            <optgroup label="Métropole">
+                                <option value="Europe/Paris">Europe/Paris (UTC+1/+2)</option>
+                            </optgroup>
+                            <optgroup label="Outre-Mer (DROM-COM)">
+                                <option value="America/Guadeloupe">Guadeloupe/Martinique/St-Martin (UTC-4)</option>
+                                <option value="America/Cayenne">Guyane (UTC-3)</option>
+                                <option value="Indian/Reunion">La Réunion (UTC+4)</option>
+                                <option value="Indian/Mayotte">Mayotte (UTC+3)</option>
+                                <option value="Pacific/Noumea">Nouvelle-Calédonie (UTC+11)</option>
+                                <option value="Pacific/Tahiti">Polynésie Française (Tahiti) (UTC-10)</option>
+                                <option value="America/Miquelon">Saint-Pierre-et-Miquelon (UTC-3)</option>
+                                <option value="Pacific/Wallis">Wallis-et-Futuna (UTC+12)</option>
+                            </optgroup>
+                            <optgroup label="International">
+                                <option value="Europe/London">Europe/London (UTC+0/+1)</option>
+                                <option value="America/New_York">America/New_York (UTC-5/-4)</option>
+                                <option value="America/Los_Angeles">America/Los_Angeles (UTC-8/-7)</option>
+                                <option value="Asia/Tokyo">Asia/Tokyo (UTC+9)</option>
+                                <option value="UTC">UTC</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-duplicate-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="confirm-duplicate-btn" class="slds-button slds-button_brand">Dupliquer</button>
+            </footer>
+        </div>
+    </section>
+    <div id="duplicate-backdrop" class="slds-backdrop"></div>
+
+    <section id="edit-exception-modal" role="dialog" tabindex="-1" aria-modal="true"
+        class="slds-modal slds-modal_small">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button id="close-edit-exception-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate">Modifier le jour exceptionnel</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <div class="slds-form-element slds-m-bottom_small">
+                    <label class="slds-form-element__label" for="edit-exception-date">Date</label>
+                    <div class="slds-form-element__control">
+                        <input type="date" id="edit-exception-date" class="slds-input">
+                    </div>
+                </div>
+                <div class="slds-form-element slds-m-bottom_small">
+                    <label class="slds-form-element__label" for="edit-exception-label">Nom de l'exception</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="edit-exception-label" class="slds-input"
+                            placeholder="ex: Noël, Maintenance SVI">
+                    </div>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-edit-exception-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="confirm-edit-exception-btn" class="slds-button slds-button_brand">Appliquer</button>
+            </footer>
+        </div>
+    </section>
+    <div id="edit-exception-backdrop" class="slds-backdrop"></div>
+    <section id="confirmation-modal" role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-modal_small">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header slds-theme_error slds-theme_alert-texture">
+                <button id="close-confirm-btn"
+                    class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                    ❌
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate" id="confirm-modal-title">Confirmation</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="confirm-modal-content">
+                <p id="confirm-modal-message">Êtes-vous sûr ?</p>
+            </div>
+            <footer class="slds-modal__footer">
+                <button id="cancel-confirm-btn" class="slds-button slds-button_neutral">Annuler</button>
+                <button id="ok-confirm-btn" class="slds-button slds-button_destructive">Confirmer</button>
+            </footer>
+        </div>
+    </section>
+    <div id="confirmation-backdrop" class="slds-backdrop"></div>
+</body>
+
+</html>

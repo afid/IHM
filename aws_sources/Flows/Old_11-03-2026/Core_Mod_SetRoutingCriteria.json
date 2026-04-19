@@ -1,0 +1,418 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "GetQueue",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": -277.6,
+      "y": 53.6
+    },
+    "ActionMetadata": {
+      "1039b6ee-bf34-44c7-9102-44e6d3beaa9a": {
+        "position": {
+          "x": 1912,
+          "y": 112.8
+        },
+        "parameters": {
+          "Attributes": {
+            "UC_Action": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "UC_Action"
+        ]
+      },
+      "8191aca0-f47f-45c9-871c-3efbca12a40b": {
+        "position": {
+          "x": 2255.2,
+          "y": 124
+        }
+      },
+      "59ce6c0c-ada9-4efe-aad0-a36264bdeeab": {
+        "position": {
+          "x": 1909.6,
+          "y": 376.8
+        }
+      },
+      "9262adef-c71e-4048-a250-785d833f614f": {
+        "position": {
+          "x": 1784,
+          "y": -112.8
+        },
+        "parameters": {
+          "Attributes": {
+            "phoneNumber": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "phoneNumber"
+        ]
+      },
+      "9273daf7-eb77-4933-8643-4804fc0423d3": {
+        "position": {
+          "x": 2024.8,
+          "y": -109.6
+        }
+      },
+      "e686d6cd-4d5b-4e57-ba6d-fb6b1b5cbc0c": {
+        "position": {
+          "x": 1532.8,
+          "y": -2.4
+        },
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "c5ecdf13-77c7-4fb5-8cc1-d07693a17cfb",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "301"
+          },
+          {
+            "id": "2679e64d-e3b9-4e77-bf27-285abb51b906",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "204"
+          }
+        ]
+      },
+      "SetRoutingCriteria": {
+        "position": {
+          "x": 1249.6,
+          "y": 175.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "Core_Lbd_SetRoutingCriteria"
+          },
+          "LambdaInvocationAttributes": {
+            "queuePriority": {
+              "useDynamic": true
+            },
+            "Parcours": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicMetadata": {
+          "queuePriority": true,
+          "Parcours": true,
+          "isMockJourney": false
+        }
+      },
+      "GetQueue": {
+        "position": {
+          "x": -25.6,
+          "y": 164
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "Core_Lbd_GetQueue"
+          }
+        },
+        "dynamicMetadata": {}
+      },
+      "SetQueueDynamique": {
+        "position": {
+          "x": 920,
+          "y": 167.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "QueueId": {
+            "useDynamic": true
+          }
+        },
+        "useDynamic": true
+      },
+      "ActionTemporaire": {
+        "position": {
+          "x": 263.2,
+          "y": 144.8
+        },
+        "isFriendlyName": true
+      },
+      "DureeAttenteMax": {
+        "position": {
+          "x": 610.4,
+          "y": 150.4
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "Attributes": {
+            "UC_DureeAttenteMax": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "UC_DureeAttenteMax"
+        ]
+      }
+    },
+    "Annotations": [],
+    "name": "Core_Mod_SetRoutingCriteria",
+    "description": "",
+    "status": "published",
+    "settings": {
+      "resultData": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "phoneNumber": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "transitions": {
+        "results": [
+          {
+            "name": "CiblageOK",
+            "description": ""
+          },
+          {
+            "name": "CiblageKO",
+            "description": ""
+          },
+          {
+            "name": "CiblageSDA",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "Attributes": {
+          "UC_Action": "$.FlowAttributes.actionTemporaire"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "1039b6ee-bf34-44c7-9102-44e6d3beaa9a",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "8191aca0-f47f-45c9-871c-3efbca12a40b",
+        "Errors": [
+          {
+            "NextAction": "8191aca0-f47f-45c9-871c-3efbca12a40b",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Result": "CiblageKO"
+      },
+      "Identifier": "8191aca0-f47f-45c9-871c-3efbca12a40b",
+      "Type": "EndFlowModuleExecution",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "Result": "CiblageOK"
+      },
+      "Identifier": "59ce6c0c-ada9-4efe-aad0-a36264bdeeab",
+      "Type": "EndFlowModuleExecution",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "phoneNumber": "$.External.phoneNumber"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "9262adef-c71e-4048-a250-785d833f614f",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "9273daf7-eb77-4933-8643-4804fc0423d3",
+        "Errors": [
+          {
+            "NextAction": "9273daf7-eb77-4933-8643-4804fc0423d3",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Result": "CiblageSDA",
+        "ResultData": {
+          "phoneNumber": "$.External.phoneNumber"
+        }
+      },
+      "Identifier": "9273daf7-eb77-4933-8643-4804fc0423d3",
+      "Type": "EndFlowModuleExecution",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.External.statusCode"
+      },
+      "Identifier": "e686d6cd-4d5b-4e57-ba6d-fb6b1b5cbc0c",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "59ce6c0c-ada9-4efe-aad0-a36264bdeeab",
+        "Conditions": [
+          {
+            "NextAction": "9262adef-c71e-4048-a250-785d833f614f",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "301"
+              ]
+            }
+          },
+          {
+            "NextAction": "1039b6ee-bf34-44c7-9102-44e6d3beaa9a",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "204"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "59ce6c0c-ada9-4efe-aad0-a36264bdeeab",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:eu-central-1:167497311447:function:Core_Lbd_SetRoutingCriteria",
+        "InvocationTimeLimitSeconds": "3",
+        "InvocationType": "SYNCHRONOUS",
+        "LambdaInvocationAttributes": {
+          "queuePriority": "$.Attributes.UC_Priorite",
+          "Parcours": "$.Attributes.UC_ParcoursTheorique",
+          "isMockJourney": "False"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "SetRoutingCriteria",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "e686d6cd-4d5b-4e57-ba6d-fb6b1b5cbc0c",
+        "Errors": [
+          {
+            "NextAction": "e686d6cd-4d5b-4e57-ba6d-fb6b1b5cbc0c",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:eu-central-1:167497311447:function:Core_Lbd_GetQueue",
+        "InvocationTimeLimitSeconds": "3",
+        "InvocationType": "SYNCHRONOUS",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "GetQueue",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "ActionTemporaire",
+        "Errors": [
+          {
+            "NextAction": "ActionTemporaire",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "QueueId": "$.External.QueueArn"
+      },
+      "Identifier": "SetQueueDynamique",
+      "Type": "UpdateContactTargetQueue",
+      "Transitions": {
+        "NextAction": "SetRoutingCriteria",
+        "Errors": [
+          {
+            "NextAction": "SetRoutingCriteria",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowAttributes": {
+          "actionTemporaire": {
+            "Value": "$.External.Action"
+          }
+        }
+      },
+      "Identifier": "ActionTemporaire",
+      "Type": "UpdateFlowAttributes",
+      "Transitions": {
+        "NextAction": "DureeAttenteMax",
+        "Errors": [
+          {
+            "NextAction": "DureeAttenteMax",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "UC_DureeAttenteMax": "$.External.DureeAttenteMax"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "DureeAttenteMax",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "SetQueueDynamique",
+        "Errors": [
+          {
+            "NextAction": "SetQueueDynamique",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ],
+  "Settings": {
+    "InputParameters": [],
+    "OutputParameters": [],
+    "Transitions": [
+      {
+        "DisplayName": "Success",
+        "ReferenceName": "Success",
+        "Description": ""
+      },
+      {
+        "DisplayName": "Error",
+        "ReferenceName": "Error",
+        "Description": ""
+      }
+    ]
+  }
+}

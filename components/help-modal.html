@@ -1,0 +1,23 @@
+<!-- Fenêtre d'aide (cachée par défaut) -->
+<section id="help-modal" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-modal_medium">
+    <div class="slds-modal__container">
+        <!-- Haut de la fenêtre avec le titre et la croix de fermeture -->
+        <header class="slds-modal__header">
+            <button id="modal-close-btn" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Fermer">
+                <span class="slds-assistive-text">Fermer</span>
+                <span class="modal-close-icon">×</span>
+            </button>
+            <h2 id="modal-heading" class="slds-modal__title slds-hyphenate font-khand">Aide</h2>
+        </header>
+        <!-- Contenu texte de l'aide -->
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content">
+            <div id="help-text" class="font-hp"></div>
+        </div>
+        <!-- Bas de la fenêtre avec un bouton Fermer -->
+        <footer class="slds-modal__footer">
+            <button id="modal-footer-close" class="slds-button slds-button_neutral">Fermer</button>
+        </footer>
+    </div>
+</section>
+<!-- Le fond noir transparent derrière la fenêtre -->
+<div id="modal-backdrop" class="slds-backdrop"></div>

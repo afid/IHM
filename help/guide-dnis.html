@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Utilisateur - Paramétrage des DNIS</title>
+    <!-- Salesforce Lightning Design System (SLDS) CSS -->
+    <link rel="stylesheet" href="../css/salesforce-lightning-design-system.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+</head>
+
+<body>
+
+    <div class="slds-text-align_center slds-m-bottom_large">
+        <h1 class="slds-text-heading_large guide-title"> Guide Utilisateur : Paramétrage des DNIS 📞</h1>
+        <p class="slds-text-heading_medium slds-text-color_weak">Tout ce que vous devez savoir pour gérer vos numéros
+            d'appel.</p>
+    </div>
+
+    <!-- Prerequis -->
+    <section class="guide-section warning-box">
+        <h2 class="warning-title">🚨 Pré-requis technique</h2>
+        <p>
+            L'usage d'un <strong>serveur HTTP</strong> est obligatoire pour faire fonctionner cette interface.
+            Ne tentez pas d'ouvrir ce fichier directement via votre explorateur de fichiers (double-clic).
+        </p>
+    </section>
+
+    <!-- 1. Introduction -->
+    <section class="guide-section">
+        <h2>1. C'est quoi un DNIS ?</h2>
+        <p>
+            Imaginez le DNIS (Dialed Number Identification Service) comme l'adresse que le client tape dans son GPS pour
+            arriver chez vous.
+            Concrètement, c'est le <strong>numéro de téléphone que le client a composé</strong>.
+        </p>
+        <p>
+            Ce module vous permet de définir ce qui se passe quand quelqu'un appelle ce numéro.
+            C'est ici que vous décidez : "Si quelqu'un appelle le 01 23 45 67 89, on considère que c'est pour la Marque
+            A, et on lui joue tel message."
+        </p>
+    </section>
+
+    <!-- 2. Interface -->
+    <section class="guide-section">
+        <h2>2. L'Interface en un coup d'œil</h2>
+        <p>L'écran est divisé en deux parties principales :</p>
+        <ul>
+            <li><strong>La zone de sélection (en haut) :</strong> C'est ici que vous choisissez sur quel numéro vous
+                voulez travailler. Vous avez une liste déroulante qui affiche tous vos numéros existants.</li>
+            <li><strong>La zone de boutons :</strong>
+                <ul>
+                    <li><span class="slds-badge slds-theme_success">Create</span> <strong>Nouveau DNIS :</strong> Pour
+                        créer un tout nouveau numéro.</li>
+                    <li><span class="slds-badge">Edit</span> <strong>Editer :</strong> Pour modifier le numéro
+                        sélectionné.</li>
+                    <li><span class="slds-badge">Duplicate</span> <strong>Dupliquer :</strong> Pour copier le numéro
+                        sélectionné (pratique pour gagner du temps !).</li>
+                    <li><span class="slds-badge slds-theme_error">Delete</span> <strong>Supprimer :</strong> Pour
+                        effacer définitivement un numéro (Attention !).</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <!-- 3. Actions -->
+    <section class="guide-section">
+        <h2>3. Comment faire...</h2>
+
+        <h3>Créer un nouveau numéro</h3>
+        <ol class="slds-list_ordered">
+            <li>Cliquez sur le bouton <strong>➕ Nouveau DNIS</strong>.</li>
+            <li>Une fenêtre s'ouvre. Remplissez au minimum le <strong>Numéro</strong> (doit commencer par +33...) et la
+                <strong>Marque</strong>.
+            </li>
+            <li>Remplissez les autres informations si vous les avez (voir section suivante).</li>
+            <li>Cliquez sur <strong>Sauvegarder</strong>.</li>
+        </ol>
+
+        <h3>Modifier un numéro existant</h3>
+        <ol class="slds-list_ordered">
+            <li>Sélectionnez le numéro dans la liste déroulante.</li>
+            <li>Vérifiez les détails qui s'affichent pour être sûr que c'est le bon.</li>
+            <li>Cliquez sur <strong>✏️ Editer</strong>.</li>
+            <li>Changez ce qui doit l'être. <em>Note : Vous ne pouvez pas changer le numéro lui-même une fois créé.</em>
+            </li>
+            <li>Cliquez sur <strong>Sauvegarder</strong>.</li>
+        </ol>
+
+        <h3>Dupliquer un numéro (Copier-Coller intelligent)</h3>
+        <p>Vous avez un nouveau numéro qui fonctionne presque pareil qu'un ancien ? Ne recommencez pas de zéro !</p>
+        <ol class="slds-list_ordered">
+            <li>Sélectionnez le numéro "modèle" dans la liste.</li>
+            <li>Cliquez sur <strong>📄 Dupliquer</strong>.</li>
+            <li>La fenêtre de création s'ouvre avec tout pré-rempli.</li>
+            <li><strong>Important :</strong> Saisissez le <strong>Nouveau Numéro</strong> (le champ est vide par
+                sécurité).</li>
+            <li>Modifiez ce qui change, puis cliquez sur <strong>Sauvegarder</strong>.</li>
+        </ol>
+    </section>
+
+    <!-- 4. Definitions -->
+    <section class="guide-section">
+        <h2>4. Comprendre les champs</h2>
+        <p>Voici à quoi sert chaque case du formulaire :</p>
+
+        <div class="field-definition">
+            <span class="field-name">Numéro (DNIS)</span>
+            C'est l'identifiant unique. Il doit être au format international, par exemple <code>+33123456789</code>.
+        </div>
+
+        <div class="field-definition">
+            <span class="field-name">Marque</span>
+            Pour quelle entité le client appelle-t-il ? (Ex: Covea, MAAF, GMF...). C'est essentiel pour le reporting.
+            <em>L'interface propose désormais un menu déroulant pour garantir l'utilisation de noms standardisés.</em>
+        </div>
+
+        <div class="field-definition">
+            <span class="field-name">Domaine / Sous-Domaine / Nature / etc.</span>
+            Regroupements métiers permettant de catégoriser finement l'appel.
+            <em>Ces champs utilisent également des menus déroulants pour faciliter la saisie et éviter les erreurs.</em>
+        </div>
+
+        <div class="field-definition">
+            <span class="field-name">Nom</span>
+            Un petit nom pour vous y retrouver plus facilement dans la liste (Ex: "Ligne VIP", "Accueil Sinistre").
+        </div>
+
+        <div class="field-definition">
+            <span class="field-name">Voix Acteur</span>
+            Qui va parler au client ? Sélectionnez la voix de synthèse ou l'acteur (Mathieu, Lea, Celine, Remi).
+        </div>
+
+        <div class="field-definition">
+            <span class="field-name">Ani Simulation / Date Simulation</span>
+            Champs techniques utilisés pour tester vos parcours. Laissez vide si vous ne savez pas.
+        </div>
+
+        <div class="field-definition">
+            <span class="field-name">Logger Actif</span>
+            Cochez cette case si vous voulez enregistrer des traces détaillées pour ce numéro (utile pour le débogage).
+        </div>
+    </section>
+
+    <!-- 5. Modules -->
+    <section class="guide-section">
+        <h2>5. Les Modules (Le "Cerveau")</h2>
+        <p>
+            Les modules définissent les actions spécifiques à exécuter lors de l'appel.
+            Par exemple : "Jouer une annonce", "Vérifier un calendrier", "Router l'appel".
+        </p>
+
+        <h3>Ajouter un module</h3>
+        <ol>
+            <li>Dans la section <strong>Modules</strong> en bas du formulaire.</li>
+            <li>Choisissez un type de module dans la liste (ex: <code>Module_Play_Announcement</code>).</li>
+            <li>Cliquez sur <strong>Ajouter</strong>.</li>
+        </ol>
+
+        <h3>Configurer un module</h3>
+        <p>Une fois ajouté, le module apparaît sous forme de "carte".</p>
+        <ul>
+            <li><strong>Choisir une action :</strong> Sélectionnez ce que le module doit faire dans le menu déroulant.
+            </li>
+            <li><strong>Actions multiples :</strong> Certains modules (comme les vérifications) permettent de faire
+                plusieurs choses à la suite.
+                <ul>
+                    <li>Cliquez sur le petit bouton vert <strong>➕ Ajouter une action</strong> pour en ajouter une
+                        autre.</li>
+                </ul>
+            </li>
+            <li><strong>Supprimer :</strong> Si vous vous êtes trompé, cliquez sur la petite poubelle 🗑️ pour retirer
+                le module ou la croix ✖️ pour retirer une ligne d'action.</li>
+        </ul>
+        <p>🚨 <em>L'ordre des modules est important ! Vous pouvez les glisser-déposer pour changer leur ordre
+                d'exécution.</em></p>
+        <p>
+            <strong>DynamoDB</strong> Core_Ddb_CollecteParametrage
+        </p>
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,376 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "Nom Annonce",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 67.2,
+      "y": 15.2
+    },
+    "ActionMetadata": {
+      "cdad093f-7e9c-4a8e-9579-af3c79c96eaa": {
+        "position": {
+          "x": 517.6,
+          "y": 213.6
+        }
+      },
+      "83de2116-2d15-459c-b65f-90c4d194e0a1": {
+        "position": {
+          "x": 1667.2,
+          "y": 106.4
+        }
+      },
+      "Play Prompt": {
+        "position": {
+          "x": 1164.8,
+          "y": -277.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "PromptId": {
+            "useDynamic": true
+          }
+        },
+        "useDynamic": true
+      },
+      "Nom Annonce": {
+        "position": {
+          "x": 239.2,
+          "y": 13.6
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "Attributes": {
+            "PromptsList": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "PromptsList"
+        ]
+      },
+      "a935f636-1786-43a7-b6b1-a9c5ce843120": {
+        "position": {
+          "x": 1172,
+          "y": 99.2
+        }
+      },
+      "Index Suivant": {
+        "position": {
+          "x": 1425.6,
+          "y": -495.2
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "Attributes": {
+            "CurrentIndex": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicParams": [
+          "CurrentIndex"
+        ]
+      },
+      "Prompt existe ?": {
+        "position": {
+          "x": 853.6,
+          "y": -172.8
+        },
+        "isFriendlyName": true,
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "e6267534-1c26-49d4-b3ca-0c2bb3202276",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "true"
+          }
+        ]
+      },
+      "BoucleAnnonce": {
+        "position": {
+          "x": 514.4,
+          "y": -152.8
+        },
+        "isFriendlyName": true,
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "Core_Lbd_GetARNAnnouncement"
+          },
+          "LambdaInvocationAttributes": {
+            "PromptsList": {
+              "useDynamic": true
+            },
+            "CurrentIndex": {
+              "useDynamic": true
+            }
+          }
+        },
+        "dynamicMetadata": {
+          "PromptsList": true,
+          "CurrentIndex": true
+        }
+      }
+    },
+    "Annotations": [
+      {
+        "type": "default",
+        "id": "2b2b7699-9dc1-4004-a8f1-77744409632f",
+        "content": "Lecture des messages reçu en Input",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": 250,
+          "y": -311
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      },
+      {
+        "type": "default",
+        "id": "ebe160f8-a395-40df-87ac-5eb9a4122e57",
+        "content": "Boucle sur la liste PromptList en partant de l'index 0",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": 614,
+          "y": -694
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      },
+      {
+        "type": "default",
+        "id": "78d7f515-1d5d-4dc1-92f8-f8b845ca314c",
+        "content": "Y a t'il un prompt a jouer ?",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": 973,
+          "y": -538
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      },
+      {
+        "type": "default",
+        "id": "8caf03fd-30a4-4b7c-bf84-843f3f61aaee",
+        "content": "Incrémentation de l'index",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": 1747,
+          "y": -943
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      },
+      {
+        "type": "default",
+        "id": "333ac6e8-d6a7-4f4b-ab1e-637d972a5d51",
+        "content": "Jouer le prompt",
+        "actionId": "",
+        "isFolded": false,
+        "position": {
+          "x": 1385,
+          "y": -685
+        },
+        "size": {
+          "height": 295,
+          "width": 300
+        }
+      }
+    ],
+    "name": "shared-core-euc1-flux-mod_GuidesVocaux",
+    "description": "",
+    "status": "published",
+    "settings": {
+      "input": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "Text": "Une erreur c'est produite lors de la Récupération du message a diffuser."
+      },
+      "Identifier": "cdad093f-7e9c-4a8e-9579-af3c79c96eaa",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "83de2116-2d15-459c-b65f-90c4d194e0a1",
+        "Errors": [
+          {
+            "NextAction": "83de2116-2d15-459c-b65f-90c4d194e0a1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "83de2116-2d15-459c-b65f-90c4d194e0a1",
+      "Type": "EndFlowModuleExecution",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "PromptId": "$.External.NextPrompt"
+      },
+      "Identifier": "Play Prompt",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "Index Suivant",
+        "Errors": [
+          {
+            "NextAction": "Index Suivant",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "PromptsList": "$.Modules.Input.input",
+          "CurrentIndex": "0"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Nom Annonce",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "BoucleAnnonce",
+        "Errors": [
+          {
+            "NextAction": "cdad093f-7e9c-4a8e-9579-af3c79c96eaa",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Text": "Une erreur c'est produite dans la boucle des messages a diffuser."
+      },
+      "Identifier": "a935f636-1786-43a7-b6b1-a9c5ce843120",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "83de2116-2d15-459c-b65f-90c4d194e0a1",
+        "Errors": [
+          {
+            "NextAction": "83de2116-2d15-459c-b65f-90c4d194e0a1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "CurrentIndex": "$.External.NextIndex"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "Index Suivant",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "BoucleAnnonce",
+        "Errors": [
+          {
+            "NextAction": "83de2116-2d15-459c-b65f-90c4d194e0a1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.External.HasMore"
+      },
+      "Identifier": "Prompt existe ?",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "83de2116-2d15-459c-b65f-90c4d194e0a1",
+        "Conditions": [
+          {
+            "NextAction": "Play Prompt",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "true"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "83de2116-2d15-459c-b65f-90c4d194e0a1",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:eu-central-1:167497311447:function:Core_Lbd_GetARNAnnouncement",
+        "InvocationTimeLimitSeconds": "3",
+        "InvocationType": "SYNCHRONOUS",
+        "LambdaInvocationAttributes": {
+          "PromptsList": "$.Attributes.PromptsList",
+          "CurrentIndex": "$.Attributes.CurrentIndex"
+        },
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "BoucleAnnonce",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "Prompt existe ?",
+        "Errors": [
+          {
+            "NextAction": "a935f636-1786-43a7-b6b1-a9c5ce843120",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ],
+  "Settings": {
+    "InputParameters": [],
+    "OutputParameters": [],
+    "Transitions": [
+      {
+        "DisplayName": "Success",
+        "ReferenceName": "Success",
+        "Description": ""
+      },
+      {
+        "DisplayName": "Error",
+        "ReferenceName": "Error",
+        "Description": ""
+      }
+    ]
+  }
+}

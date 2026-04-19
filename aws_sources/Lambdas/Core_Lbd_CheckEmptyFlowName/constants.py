@@ -1,0 +1,3 @@
+# Logging levels
+LOG_LEVEL_INFO = 'INFO'
+LOG_LEVEL_DEBUG = 'DEBUG'
